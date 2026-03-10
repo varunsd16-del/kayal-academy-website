@@ -1,0 +1,429 @@
+---
+import { businessInfo } from "../config/business";
+---
+
+<section id="contact" class="contact section">
+  <div class="container">
+    <div class="text-center section-header">
+      <span class="badge text-accent" style="background: rgba(4, 120, 87, 0.1); border-color: rgba(4, 120, 87, 0.3);">Enroll Today</span>
+      <h2 class="h2">Connect with <span class="text-primary">Kayal Academy Abacus Classes in Trichy</span></h2>
+      <p class="text-lg subtitle mx-auto text-muted">Secure your child's future or elevate your own career. Reach out to schedule a consultation at our Trichy centre.</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Contact Info & Form -->
+      <div class="contact-content card glass">
+        <h3 class="h3 mb-4 font-heading text-primary">Request Callback</h3>
+        <p class="text-muted mb-6">Leave your details and our academic counselors will reach out to you within 24 hours.</p>
+        
+        <form id="contact-form" class="contact-form" action="#" method="POST">
+          <div class="form-group grid-2">
+            <div>
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required placeholder="eg.John Doe" class="form-control" />
+            </div>
+            <div>
+              <label for="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                pattern="[0-9]{10}"
+                inputmode="numeric"
+                placeholder="Enter 10 digit mobile number"
+                class="form-control"
+                />
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="program">Interested Program</label>
+            <div class="select-wrapper">
+              <select id="program" name="program" class="form-control" required>
+                <option value="" disabled selected>Select a program...</option>
+                <option value="abacus">🧮 Abacus</option>
+                <option value="calligraphy">✍️ Calligraphy & Handwriting</option>
+                <option value="tuition">📚 School Tuitions (1st to 8th Std)</option>
+                <option value="phonics">📖 Phonics Classes</option>
+                <option value="vedic-maths">⭐ Vedic Maths</option>
+                <option value="hindi">🗣️ Hindi Classes (DBHPS)</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary w-full mt-2" id="submit-btn" style="position:relative; overflow:hidden;">
+            <span>Request Free Demo</span>
+          </button>
+
+          <div id="form-success" class="form-success hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-accent" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>Thank you! We'll contact you shortly.</span>
+          </div>
+        </form>
+
+        <div class="divider"><span>Or reach us directly</span></div>
+
+        <div class="direct-contact flex flex-col gap-4">
+          <a href={`tel:${businessInfo.phone}`} class="btn btn-outline w-full justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 text-accent"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call {businessInfo.phone}
+          </a>
+          <a href={`https://wa.me/${businessInfo.whatsapp}`} class="btn btn-accent w-full justify-center" target="_blank" rel="noopener noreferrer">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="mr-2"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.876 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            WhatsApp Message
+          </a>
+        </div>
+      </div>
+
+      <!-- Map & Info -->
+      <div class="map-container card glass p-0 border-0">
+        <div class="info-card-container">
+          <div class="info-item">
+            <div class="icon-circle bg-primary-light text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h4 class="font-heading text-primary text-lg">Location</h4>
+              <p class="text-muted mt-1" style="font-size:0.95rem;">{businessInfo.address.formatted}</p>
+            </div>
+          </div>
+          <div class="contact-divider"></div>
+          <div class="info-item">
+            <div class="icon-circle bg-primary-light text-primary">
+               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h4 class="font-heading text-primary text-lg">Hours</h4>
+              <div class="text-muted mt-1" style="font-size:0.95rem; line-height: 1.6;">
+                <div>Mon-Fri: 5:00 PM - 8:00 PM</div>
+                <div>Sat-Sun: 10:00 AM - 8:00 PM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="map-wrapper map-static bg-emerald/5 flex flex-col items-center justify-center p-8 text-center" style="background-color: var(--color-bg-alt); border-radius: 0 0 var(--radius-xl) var(--radius-xl);">
+          <div class="icon-circle bg-emerald text-white mb-4" style="background-color: var(--color-primary); color: white;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4 class="font-heading text-primary h4 mb-2">View on Google Maps</h4>
+          <p class="text-muted text-sm mb-6 max-w-xs mx-auto">Click to open directions to Kayal Academy in Google Maps.</p>
+          <a href="https://www.google.com/maps/search/Indian+Abacus+@+Kayal+Academy+133/96,+N+Andar+St,+Post,+Theppakulam,+Tiruchirappalli,+Tamil+Nadu+620002" target="_blank" rel="noopener noreferrer" class="btn btn-outline glow-on-hover">
+            Open Map
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    background-color: var(--color-bg);
+    padding-bottom: 8rem;
+  }
+
+  .section-header {
+    max-width: 600px;
+    margin: 0 auto 4rem;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 1rem;
+    border: 1px solid;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .text-primary { color: var(--color-primary); }
+  .text-accent { color: var(--color-accent); }
+  .text-muted { color: var(--color-text-muted); }
+  .italic { font-style: italic; font-weight: 700; }
+  .subtitle { margin-top: 1rem; }
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .font-heading { font-family: var(--font-family-heading); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 4rem;
+  }
+
+  .mb-4 { margin-bottom: 1.5rem; }
+  .mb-6 { margin-bottom: 2rem; }
+  .mt-1 { margin-top: 0.25rem; }
+  .mt-2 { margin-top: 0.5rem; }
+  .mr-2 { margin-right: 0.5rem; }
+  .w-full { width: 100%; }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: var(--transition);
+    background-color: rgba(255,255,255,0.8);
+    color: var(--color-text);
+  }
+
+  .form-control:focus {
+    border-color: var(--color-primary-light);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+    background-color: white;
+    outline: none;
+  }
+  
+  .form-success {
+    margin-top: 1rem;
+    padding: 0.875rem 1rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--color-primary-light);
+    border-radius: var(--radius-md);
+    color: var(--color-primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .form-success.hidden { 
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    position: absolute;
+    visibility: hidden;
+  }
+  
+  .select-wrapper {
+    position: relative;
+  }
+  
+  .select-wrapper::after {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    pointer-events: none;
+    transition: transform 0.2s ease;
+  }
+
+  .select-wrapper:focus-within::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  }
+  
+  select.form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-right: 2.75rem;
+    font-weight: 500;
+    background: linear-gradient(to bottom, #ffffff, #fafafa);
+    transition: all 0.3s ease;
+  }
+
+  select.form-control:hover {
+    border-color: rgba(16, 185, 129, 0.4);
+    background: #ffffff;
+  }
+
+  select.form-control:focus {
+    background: #ffffff;
+  }
+
+  select.form-control option {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    background: #ffffff;
+    color: var(--color-text);
+  }
+
+  select.form-control option:checked {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 2.5rem 0;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .divider span {
+    padding: 0 1rem;
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .p-0 { padding: 0; }
+  .border-0 { border: none; }
+
+  .map-container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .info-card-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2.5rem 3rem;
+  }
+
+  .contact-divider {
+    height: 1px;
+    width: 100%;
+    background: var(--color-border);
+  }
+
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .icon-circle {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .bg-primary-light { background-color: rgba(15, 118, 110, 0.1); }
+  .bg-accent-light { background-color: rgba(212, 175, 55, 0.1); }
+
+  .map-wrapper {
+    flex-grow: 1;
+    min-height: 350px;
+    width: 100%;
+  }
+
+  .map-static {
+    padding: 3rem 2rem;
+    transition: var(--transition);
+  }
+
+  .map-static:hover {
+    background-color: rgba(4, 120, 87, 0.03) !important;
+  }
+
+  .glow-on-hover:hover {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+  }
+
+  .max-w-xs { max-width: 20rem; }
+
+  @media (max-width: 992px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    .grid-2 { grid-template-columns: 1fr; gap: 1rem; }
+    .map-wrapper {
+      min-height: 300px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const form = document.getElementById('contact-form');
+    const btn = document.getElementById('submit-btn');
+    
+    // We get the business number from the data attribute or fallback to the known number
+    const whatsappNum = '919159496503';
+
+    if (form && btn) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // 1. Loading Text
+        const span = btn.querySelector('span');
+        const originalText = span ? span.textContent : 'Request Free Demo';
+        if(span) span.textContent = 'Redirecting to WhatsApp...';
+        btn.setAttribute('disabled', 'true');
+        btn.style.opacity = '0.8';
+        btn.style.cursor = 'wait';
+        
+        // 2. Format Message
+        const formData = new FormData(form);
+        const name = formData.get('name');
+        const phone = formData.get('phone');
+        const program = formData.get('program');
+        
+        let programName = program;
+        switch(program) {
+          case 'abacus': programName = 'Abacus'; break;
+          case 'calligraphy': programName = 'Calligraphy & Handwriting'; break;
+          case 'tuition': programName = 'School Tuitions (1st to 8th Std)'; break;
+          case 'phonics': programName = 'Phonics Classes'; break;
+          case 'vedic-maths': programName = 'Vedic Maths'; break;
+          case 'hindi': programName = 'Hindi Classes (DBHPS)'; break;
+        }
+
+        const message = `Hello Kayal Academy! 🎓\n\nI would like to request a callback/demo class.\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Program of Interest:* ${programName}\n\nPlease let me know when we can connect. Thank you!`;
+        
+        const whatsappUrl = `https://wa.me/${whatsappNum}?text=${encodeURIComponent(message)}`;
+
+        // 3. Redirect
+        setTimeout(() => {
+          window.open(whatsappUrl, '_blank');
+          
+          // Reset form after redirecting
+          form.reset();
+          if(span) span.textContent = originalText;
+          btn.removeAttribute('disabled');
+          btn.style.opacity = '1';
+          btn.style.cursor = 'pointer';
+        }, 500);
+      });
+    }
+  });
+</script>

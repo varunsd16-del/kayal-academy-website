@@ -1,0 +1,270 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const faqs = [
+  {
+  q: "Is Kayal Academy an authorized Indian Abacus franchise in Trichy?",
+  a: "Yes, Kayal Academy is an authorized Indian Abacus franchise centre in Trichy. Our structured 8-level Abacus program helps children improve mental math speed, concentration, and memory."
+  },
+  {
+    q: "Do you offer a free demo class for Abacus training?",
+    a: "Yes, parents can book a free demo class to understand our teaching methodology and see how the Indian Abacus program improves children's concentration and mental math skills."
+  },
+  {
+  q: "Where is Kayal Academy located in Trichy?",
+  a: "Kayal Academy is located in Teppakulam, Tiruchirappalli. Our tuition centre is easily accessible for students from nearby schools and residential areas."
+  },
+  {
+    q: "What is the fee for Abacus classes at Kayal Academy?",
+    a: "The fee structure depends on the course level and program duration. Parents can contact Kayal Academy directly to know the latest fee details and available batches."
+  },
+  {
+  q: "Do you offer evening or weekend batches for students?",
+  a: "Yes, Kayal Academy offers flexible evening and weekend batches so that students can attend Abacus and tuition classes after school hours."
+  },
+  {
+  q: "What are the benefits of learning Abacus for children?",
+  a: "Abacus training improves mental math speed, concentration, memory, visualization ability, and confidence in mathematics. It helps children perform calculations faster than calculators."
+  },
+  {
+  q: "What is the ideal age to start Abacus training?",
+  a: "The ideal age to start Abacus training is between 5 and 14 years. During this stage, children's brains are highly receptive to mental math and memory development."
+  },
+  {
+  q: "Which is the best Abacus class in Trichy for children?",
+  a: "Kayal Academy is one of the most trusted Abacus training centres in Trichy offering structured Indian Abacus programs, handwriting improvement classes, phonics training and school tuition."
+  },
+  {
+  q: "What other courses are available at Kayal Academy besides Abacus?",
+  a: "Apart from Abacus training, Kayal Academy offers handwriting improvement (calligraphy), phonics classes, Hindi language training, Vedic maths, and school tuition for students from 1st to 8th standard."
+  }
+
+];
+---
+
+<Layout 
+  title="Abacus Classes FAQs | Kayal Academy Tuition Centre in Trichy"
+  description="Find answers to common questions about our Abacus, Handwriting, and Tuition classes at Kayal Academy in Teppakulam, Trichy."
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  })} slot="head" />
+
+  <PageHeader 
+    title="Abacus & Tuition Classes FAQ – Kayal Academy Trichy"
+    subtitle="Everything you need to know about joining Kayal Academy."
+  />
+
+  <section class="faq-section section">
+    <div class="container faq-layout">
+      
+      <!-- Sticky Sidebar -->
+      <div class="faq-sidebar reveal reveal-left">
+        <h2 class="h2 text-primary">Your Questions,<br/><span class="text-accent">Answered.</span></h2>
+        <p class="text-muted mt-4 mb-6">Can't find what you're looking for? Reach out to our admissions team for immediate assistance.</p>
+        <a href="/contact" class="btn btn-primary btn-glow mb-8">Get In Touch</a>
+                <div class="faq-image reveal fade-left delay-400">
+            <img 
+              src="/achievements/mental-math-prodigies-trichy.webp" 
+              alt="Kayal Academy Abacus Students in Trichy" 
+              class="rounded-image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+      <!-- FAQ Accordions -->
+      <div class="faq-list">
+        {faqs.map((faq, i) => (
+          <details class="faq-item glass reveal delay-${(i % 5) * 100}">
+            <summary class="faq-question">
+              <h3 class="faq-title text-primary m-0 flex items-center">
+                <span class="text-accent mr-3 font-heading">Q{i+1}.</span>
+                {faq.q}
+              </h3>
+              <span class="icon-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron"><path d="m6 9 6 6 6-6"/></svg>
+              </span>
+            </summary>
+            <div class="faq-answer">
+              <p class="text-muted">{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+      
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .faq-section {
+    padding: 6rem 0 10rem;
+    background-color: var(--color-bg);
+  }
+
+  .faq-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .faq-sidebar {
+    position: sticky;
+    top: 120px; /* Under the header */
+    padding-right: 2rem;
+  }
+
+  .faq-sidebar .h2 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Compact Accordion Styling */
+  .faq-item {
+    border-radius: 1.5rem; /* Oval/pill shape */
+    background: #ffffff;
+    border: none; /* Remove subtle borders */
+    border-left: 6px solid var(--color-primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .faq-item:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.75rem; /* More compact */
+    cursor: pointer;
+    list-style: none; /* Hide default arrow */
+    user-select: none;
+  }
+
+  /* Webkit specifically */
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .m-0 { margin: 0; }
+  .font-heading { font-family: var(--font-family-heading); font-weight: 700; }
+  .mr-3 { margin-right: 0.75rem; color: var(--color-primary); }
+  .text-primary { color: var(--color-primary); font-weight: 600; font-size: 1.1rem; }
+  .flex { display: flex; }
+  .items-center { align-items: center; }
+
+  .icon-toggle {
+    color: var(--color-primary);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 1rem;
+    background: rgba(16, 185, 129, 0.15); /* Soft mint background */
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  details[open] .icon-toggle {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding: 0 2rem 1.5rem 3.75rem; /* Align perfectly under question text */
+  }
+
+  .faq-answer p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0;
+    animation: slideDown 0.3s ease-out forwards;
+    transform-origin: top;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .mt-12 { margin-top: 4rem; }
+  .mb-4 { margin-bottom: 1.5rem; }
+  .mb-6 { margin-bottom: 2rem; }
+  
+  .sidebar-image-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 3rem;
+  }
+  
+  .sidebar-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    z-index: 2;
+    position: relative;
+  }
+  
+  .shadow-glow {
+    box-shadow: 0 15px 35px -5px rgba(15, 118, 110, 0.2);
+  }
+
+  .accent-frame {
+    position: absolute;
+    bottom: -1rem;
+    left: -1rem;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary-dark));
+    border-radius: var(--radius-lg);
+    z-index: 1;
+    opacity: 0.15;
+    transform: rotate(-3deg);
+  }
+  
+  @media (max-width: 900px) {
+    .faq-layout {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .faq-sidebar {
+      position: relative;
+      top: 0;
+      text-align: center;
+      padding-right: 0;
+    }
+    /* Hide the sidebar image on mobile since it goes above the FAQs */
+    .sidebar-image-wrapper {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .faq-question { padding: 1.5rem; }
+    .faq-answer { padding: 0 1.5rem 1.5rem; }
+    .faq-list { gap: 1rem; }
+  }
+</style>

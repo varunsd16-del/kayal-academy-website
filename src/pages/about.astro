@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import AboutMe from '../components/AboutMe.astro';
+import MissionVision from '../components/MissionVision.astro';
+import Certifications from '../components/Certifications.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<Layout 
+  title="About Kayal Academy | Abacus Classes & Tuition Centre in Trichy"
+  description="Learn about Kayal Academy, a trusted Abacus training and tuition centre in Trichy located at Teppakulam. Discover our teaching methodology, certifications and student success stories."
+>
+  <PageHeader 
+    title="About Kayal Academy – Abacus Training Centre in Trichy"
+    description="Discover the passion, the people, and the legacy that makes Kayal Academy the premier skill development destination in Trichy."
+  />
+  
+  <!-- Standard About Me -->
+  <div class="about-me-wrapper">
+    <AboutMe isExtended={true} />
+  </div>
+
+  <!-- Exclusive About Page Content -->
+  <MissionVision />
+  
+  <!-- Official Verified Certifications -->
+  <Certifications />
+  
+  <div class="testimonial-wrapper">
+    <Testimonials />
+  </div>
+
+  <Contact />
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "EducationalOrganization",
+ "name": "Kayal Academy",
+ "url": "https://kayalacademy.com",
+ "address": {
+   "@type": "PostalAddress",
+   "streetAddress": "133/96 North Andar St",
+   "addressLocality": "Tiruchirappalli",
+   "addressRegion": "Tamil Nadu",
+   "postalCode": "620002",
+   "addressCountry": "IN"
+ },
+ "telephone": "+91-9159496503"
+}
+</script>
+</Layout>
+
+<style>
+  .testimonial-wrapper {
+    background-color: var(--color-bg);
+    padding-top: 2rem;
+  }
+  
+  /* Fix overlapping issue on the About page. The AboutMe component has a -6rem margin-top 
+     for the homepage design. We override it here so it doesn't overlap the PageHeader on this page. */
+  .about-me-wrapper {
+    position: relative;
+    z-index: 10;
+    margin-top: -2rem; /* Pull up to remove the massive gap from the previous section */
+    padding-bottom: 2rem;
+  }
+  
+  /* Prevent the component's internal margin from escaping */
+  .about-me-wrapper :global(.about-me) {
+    margin-top: 0 !important;
+  }
+</style>

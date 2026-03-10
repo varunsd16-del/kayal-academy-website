@@ -1,0 +1,332 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const reels = [
+  {
+    influencer: "@trichy_updates",
+    role: "Education Blogger",
+    title: "Best Abacus Center in Trichy! 🧮",
+    views: "15.2K",
+    likes: "1.2K",
+    thumbnail: "/achievements/abacus-training-trichy-hero.webp",
+    link: "https://www.instagram.com/reel/DUpWdxSk4N0/?igsh=ZGQ2ajhjeDY1ejky"
+  },
+  {
+    influencer: "Parent Feedback",
+    role: "Happy Parent",
+    title: "Why we chose Kayal Academy ✨",
+    views: "24.5K",
+    likes: "3.4K",
+    thumbnail: "/achievements/kayal-academy-about-us-2.webp",
+    link: "https://www.instagram.com/reel/DMC1LF2IT_g/?igsh=M2RmMjZneDhqMzJy"
+  },
+  {
+    influencer: "Influencer Review",
+    role: "Local Creator",
+    title: "All about Kayal Academy in Trichy 🌟",
+    views: "42.1K",
+    likes: "5.8K",
+    thumbnail: "/achievements/student-feedback-kayal-academy-2.webp",
+    link: "https://www.instagram.com/reel/DSFNMw9E6p5/?igsh=Y2pwMDRtMHNwNHox"
+  },
+  {
+    influencer: "Calligraphy Parent",
+    role: "Happy Parent",
+    title: "Handwriting Transformation! ✍️",
+    views: "19.8K",
+    likes: "2.1K",
+    thumbnail: "/achievements/student-feedback-kayal-academy-1.webp",
+    link: "https://www.instagram.com/reel/DO_r_CBk8kp/?igsh=MXFnbjloZXE0MzE3ZA=="
+  }
+];
+---
+
+<Layout 
+  title="Parent Feedback - Kayal Academy Trichy"
+  description="Watch Instagram Reels and reviews from parents and top creators about Kayal Academy's premium education programs."
+>
+  <PageHeader 
+    title="Parent Feedback" 
+    subtitle="See what parents and creators are saying about Kayal Academy."
+  />
+
+  <section class="reels-section section">
+    <div class="container">
+      <div class="text-center section-header reveal">
+        <span class="badge text-primary" style="background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.2);">Trending on Social</span>
+        <h2 class="h2 reveal delay-100">Featured <span class="text-accent">Instagram Reels</span></h2>
+        <p class="text-lg subtitle mx-auto text-muted text-center reveal delay-200">Watch honest reviews and viral moments highlighting the Kayal Academy experience.</p>
+      </div>
+
+      <div class="reels-grid">
+        {reels.map((reel, index) => (
+          <a href={reel.link} target="_blank" rel="noopener noreferrer" class={`reel-card glass reveal delay-${(index % 4) * 100}`}>
+            <div class="reel-thumbnail">
+              <img src={reel.thumbnail} alt={`Reel by ${reel.influencer}`} loading="lazy" />
+              
+              <div class="play-overlay">
+                <div class="play-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="reel-stats">
+                <div class="stat">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  {reel.likes}
+                </div>
+                <div class="stat">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  {reel.views}
+                </div>
+              </div>
+            </div>
+            
+            <div class="reel-content">
+              <div class="influencer-info">
+                <h3 class="influencer-handle text-primary">{reel.influencer}</h3>
+                <span class="influencer-role text-muted">{reel.role}</span>
+              </div>
+              <p class="reel-title">{reel.title}</p>
+              
+              <div class="watch-cta">
+                <span class="text-primary font-semibold flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                  Watch on Instagram
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+      
+      <div class="text-center mt-16 reveal delay-400">
+        <a href="https://instagram.com/kayalacademy" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-glow shadow-glow text-lg px-8 py-4 inline-flex items-center gap-3" style="border-radius: 999px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          Follow Us on Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .reels-section {
+    padding: 6rem 0 8rem;
+    background-color: var(--color-bg);
+    position: relative;
+    z-index: 2;
+  }
+
+  .section-header {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .subtitle {
+    margin-top: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .reels-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .reel-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-xl);
+    background: rgba(255, 255, 255, 0.8);
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+  }
+  
+  .reel-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.2);
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  .reel-thumbnail {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9/16; /* Standard Reels aspect ratio */
+    overflow: hidden;
+    background: #000;
+  }
+
+  .reel-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+
+  .reel-card:hover .reel-thumbnail img {
+    transform: scale(1.05);
+    opacity: 0.7;
+  }
+
+  .play-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7) 100%);
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+  }
+
+  .play-btn {
+    width: 64px;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transform: scale(0.9);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .reel-card:hover .play-btn {
+    transform: scale(1.1);
+    background: var(--color-primary);
+    border-color: var(--color-primary-light);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+  }
+
+  .reel-stats {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+  }
+
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    padding: 0.35rem 0.6rem;
+    border-radius: 100px;
+  }
+
+  .reel-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background: white;
+  }
+
+  .influencer-info {
+    margin-bottom: 0.75rem;
+  }
+
+  .influencer-handle {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 0.15rem 0;
+  }
+
+  .influencer-role {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .reel-title {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    line-height: 1.5;
+    margin: 0 0 1.5rem 0;
+    flex-grow: 1;
+  }
+
+  .watch-cta {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .watch-cta span {
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+  }
+
+  .reel-card:hover .watch-cta span {
+    color: var(--color-primary-dark);
+  }
+  
+  .reel-card:hover .watch-cta svg {
+    transform: translateX(4px);
+    transition: transform 0.3s ease;
+  }
+
+  .flex { display: flex; }
+  .items-center { align-items: center; }
+  .gap-2 { gap: 0.5rem; }
+  .font-semibold { font-weight: 600; }
+  .mt-16 { margin-top: 4rem; }
+
+  @media (max-width: 1200px) {
+    .reels-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .reels-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .reels-grid {
+      grid-template-columns: 1fr;
+      max-width: 380px;
+    }
+    .reels-section { padding: 4rem 0 6rem; }
+  }
+</style>

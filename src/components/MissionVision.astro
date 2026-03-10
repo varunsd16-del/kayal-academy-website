@@ -1,0 +1,182 @@
+---
+// MissionVision.astro
+const coreValues = [
+  {
+    title: "Student-Centric Approach",
+    desc: "Every program we offer is tailored around the cognitive and emotional needs of the child.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`
+  },
+  {
+    title: "Holistic Development",
+    desc: "We focus not just on academic marks, but on long-term brain development, logic, and creativity.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 18a6 6 0 0 0 0-12v12z"/></svg>`
+  },
+  {
+    title: "Excellence in Pedagogy",
+    desc: "Our trainers undergo rigorous certification to ensure the highest standards of teaching in Trichy.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>`
+  }
+];
+---
+
+<section class="mission-vision section relative">
+  <!-- Soft background element -->
+  <div class="bg-glow"></div>
+
+  <div class="container relative z-10">
+    <!-- Split Layout for Mission & Vision -->
+    <div class="mv-grid reveal">
+      <div class="mv-card glass">
+        <div class="icon-header">
+           <span class="badge" style="background: rgba(16, 185, 129, 0.1); color: var(--color-primary); border-color: rgba(16, 185, 129, 0.2)">Our Mission</span>
+        </div>
+        <h3 class="h3 font-heading mt-4 text-primary">Empowering the Next Generation</h3>
+        <p class="text-muted mt-4">
+          To provide premium Abacus training and skill development programs for students in Teppakulam, Trichy. We create an engaging learning environment where every child's potential is discovered and developed.
+        </p>
+      </div>
+
+      <div class="mv-card glass outline-card">
+        <div class="icon-header">
+           <span class="badge" style="background: rgba(212, 175, 55, 0.1); color: var(--color-accent); border-color: rgba(212, 175, 55, 0.3)">Our Vision</span>
+        </div>
+        <h3 class="h3 font-heading mt-4 text-accent">Leading Skill Development Academy in Trichy</h3>
+        <p class="text-muted mt-4">
+          To be the undisputed leader in supplementary education in Tamil Nadu. We envision a future where Kayal Academy alumni lead with confidence, exceptional cognitive abilities, and strong core values, standing tall on the global stage.
+        </p>
+      </div>
+    </div>
+
+    <!-- Core Values Section -->
+    <div class="core-values mt-20">
+      <div class="text-center mb-12 reveal">
+        <h2 class="h2 font-heading">Core Values of <span class="text-gradient">Kayal Academy</span></h2>
+        <p class="text-muted text-lg mt-4 max-w-2xl mx-auto">The foundational pillars that have maintained our 98% success rate and earned the trust of hundreds of parents in Trichy.</p>
+      </div>
+
+      <div class="values-grid">
+        {coreValues.map((val, i) => (
+          <div class={`value-item reveal delay-${i * 100}`}>
+            <div class="val-icon glass-icon" set:html={val.icon} />
+            <h4 class="h4 font-heading">{val.title}</h4>
+            <p class="text-muted mt-2">{val.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .mission-vision {
+    padding: 8rem 0;
+    background-color: transparent;
+    overflow: hidden;
+  }
+
+  .bg-glow {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  /* Mission Vision Split Cards */
+  .mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .mv-card {
+    padding: 4rem 3rem;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 10px 40px -10px var(--color-shadow);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    border: 2px solid rgba(16, 185, 129, 0.4);
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  .mv-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(16, 185, 129, 0.8);
+  }
+
+  .outline-card {
+    background: rgba(255, 255, 255, 0.85);
+    border: 2px solid rgba(212, 175, 55, 0.5);
+  }
+  
+  .outline-card:hover {
+    border-color: rgba(212, 175, 55, 0.9);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid transparent;
+  }
+
+  .font-heading { font-family: var(--font-family-heading); }
+  .text-primary { color: var(--color-primary); }
+  .text-accent { color: var(--color-accent); }
+  .text-muted { color: var(--color-text-muted); }
+  
+  .mt-4 { margin-top: 1rem; }
+  .mt-2 { margin-top: 0.5rem; }
+  .mt-20 { margin-top: 6rem; }
+  .mb-4 { margin-bottom: 1rem; }
+  .mb-12 { margin-bottom: 3rem; }
+  .mb-6 { margin-bottom: 1.5rem; }
+  .text-center { text-align: center; }
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-w-2xl { max-width: 42rem; }
+
+  /* Core Values Grid */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+
+  .value-item {
+    padding: 2.5rem;
+    background: white;
+    border-radius: var(--radius-lg);
+    border-top: 3px solid var(--color-primary-light);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    transition: all 0.3s ease;
+  }
+
+  .value-item:hover {
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    transform: translateY(-4px);
+  }
+
+  .glass-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .mv-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .values-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .mv-card { padding: 2.5rem 2rem; }
+  }
+</style>

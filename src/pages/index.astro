@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import SummerBanner from '../components/SummerBanner.astro';
+import PhotoBento from '../components/PhotoBento.astro';
+import TrustIndicators from '../components/TrustIndicators.astro';
+import AboutMe from '../components/AboutMe.astro';
+import Methodology from '../components/Methodology.astro';
+import Programs from '../components/Programs.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<Layout
+  title="Best Abacus Classes in Trichy | Mental Math Training | Kayal Academy"
+  description="Kayal Academy offers the best Abacus classes in Trichy with expert mental math training for kids. Located in Teppakulam, we provide Indian Abacus programs, handwriting improvement, phonics, spoken Hindi and tuition classes."
+>
+
+<h1 class="sr-only">
+Best Abacus Classes in Trichy – Kayal Academy Mental Math Training
+</h1>
+
+<Fragment slot="head">
+  <link rel="preload" as="image" href="/achievements/abacus-training-trichy-hero.webp" />
+</Fragment>
+
+<Hero />
+<SummerBanner />
+<PhotoBento />
+<TrustIndicators />
+
+
+
+<AboutMe />
+<Methodology />
+<Programs />
+<Testimonials />
+<Contact />
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What age is suitable for learning Abacus?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Children aged 5 to 14 can effectively learn Abacus at Kayal Academy in Trichy. Our mental math training improves calculation speed, concentration and memory."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Where is Kayal Academy located?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Kayal Academy is located in Teppakulam, Tiruchirappalli offering Abacus classes, handwriting training, phonics and school tuition."
+   }
+  }
+ ]
+}
+</script>
+
+</Layout>

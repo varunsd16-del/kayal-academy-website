@@ -1,0 +1,228 @@
+---
+const testimonials = [
+  {
+    name: "Priya S.",
+    role: "Parent of 8-year-old",
+    text: "My son's concentration has improved remarkably since joining the Indian Abacus Academy. His fear of math is completely gone, and he actually enjoys doing calculations now. Highly recommend the Teppakulam centre!",
+    rating: 5
+  },
+  {
+    name: "Ramesh K.",
+    role: "Parent of 10-year-old",
+    text: "The trainers are extremely patient and professional. Not only did my daughter's math speed increase, but her overall academic performance and handwriting have also seen great improvement.",
+    rating: 5
+  },
+  {
+    name: "Anitha M.",
+    role: "Parent of 6-year-old",
+    text: "Best decision we made! The structured 8-level program is fantastic. Within just two levels, I can see a massive difference in my child's focus and listening skills.",
+    rating: 5
+  }
+];
+
+// Generate stars HTML
+const renderStars = (rating: number) => {
+  let stars = '';
+  for (let i = 0; i < rating; i++) {
+    stars += `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+  }
+  return stars;
+};
+---
+
+<section id="testimonials" class="testimonials section">
+  <div class="container">
+    <div class="text-center section-header reveal">
+      <span class="badge">Social Proof</span>
+      <h2 class="h2 mt-4 font-heading reveal delay-100">Why Parents <span class="text-gradient">Trust Us</span></h2>
+      <p class="text-lg subtitle mx-auto text-muted reveal delay-200">Don't just take our word for it. Hear from parents in Trichy whose children have transformed their academic journeys.</p>
+    </div>
+  </div>
+
+  <div class="marquee-wrapper reveal delay-300">
+    <div class="marquee-track">
+      <!-- Original Set -->
+      {testimonials.map(t => (
+        <div class="testimonial-card glass">
+          <div class="stars" set:html={renderStars(t.rating)} />
+          <p class="quote">"{t.text}"</p>
+          <div class="author">
+            <div class="avatar-placeholder">{t.name.charAt(0)}</div>
+            <div>
+              <div class="author-name">{t.name}</div>
+              <div class="author-role">{t.role}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+      <!-- Duplicate Set for Seamless Loop -->
+      {testimonials.map(t => (
+        <div class="testimonial-card glass">
+          <div class="stars" set:html={renderStars(t.rating)} />
+          <p class="quote">"{t.text}"</p>
+          <div class="author">
+            <div class="avatar-placeholder">{t.name.charAt(0)}</div>
+            <div>
+              <div class="author-name">{t.name}</div>
+              <div class="author-role">{t.role}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  
+  <div class="container text-center mt-12">
+    <a href="https://share.google/TGoV8tLt6L8oFTJFr" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Read more reviews on Google
+    </a>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    background-color: var(--color-bg);
+    position: relative;
+    padding-bottom: 8rem;
+    overflow: hidden;
+  }
+
+  .section-header {
+    max-width: 600px;
+    margin: 0 auto 4rem;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+
+  .subtitle {
+    margin-top: 1.5rem;
+  }
+  
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .mt-4 { margin-top: 1rem; }
+  .font-heading { font-family: var(--font-family-heading); }
+
+  /* Marquee Styles */
+  .marquee-wrapper {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: 2rem;
+    padding: 1rem 0;
+    
+    /* Fade edges */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    flex-shrink: 0;
+    gap: 2rem;
+    min-width: 100%;
+    animation: scroll 30s linear infinite;
+  }
+
+  .marquee-wrapper:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - 1rem)); } /* -50% of the doubled track minus half gap */
+  }
+
+  .testimonial-card {
+    width: 450px;
+    border-radius: var(--radius-xl);
+    padding: 3rem 2.5rem;
+    box-shadow: 0 10px 30px -10px var(--color-shadow);
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+  
+  .testimonial-card:hover {
+    background: white;
+    transform: translateY(-5px);
+  }
+
+  .stars {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .quote {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .author {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+  }
+
+  .avatar-placeholder {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .author-name {
+    font-weight: 700;
+    font-family: var(--font-family-heading);
+    font-size: 1.1rem;
+    color: var(--color-text);
+  }
+
+  .author-role {
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .mt-12 { margin-top: 4rem; }
+  .mr-2 { margin-right: 0.5rem; }
+
+  @media (max-width: 768px) {
+    .testimonial-card {
+      width: 320px;
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>

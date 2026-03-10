@@ -1,0 +1,429 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const achievements = [
+  {
+    title: "5th Indian Abacus National Level Olympiad 2023",
+    date: "July 2023",
+    category: "National Level",
+    description: "Our student proudly receiving the award at the 5th Indian Abacus National Level Olympiad held in 2023.",
+    images: [
+      "/achievements/national-abacus-olympiad-winner-1.webp",
+      "/achievements/national-abacus-olympiad-winner-2.webp",
+      "/achievements/regional-abacus-olympiad-winner.webp",
+    ],
+    span: "size-large"
+  },
+  {
+    title: "Rising Star Award",
+    date: "2023",
+    category: "Special Recognition",
+    description: "Student awarded the prestigious Rising Star title for exceptional performance in mental arithmetic.",
+    images: [
+      "/achievements/rising-star-abacus-award.webp",        // card 2 lead — unique
+      "/achievements/regional-abacus-olympiad-winner.webp",
+    ],
+    span: "size-small"
+  },
+  { 
+    title: "6th Indian Abacus National Level Olympiad 2025", 
+    date: "2025",
+    category: "National Level",
+    description: "Consecutively honored with the Best Performing Franchisee Award for the year 2025.",
+    images: [
+      "/achievements/national-abacus-olympiad-winner-2.webp", // card 3 lead — unique
+      "/achievements/national-abacus-olympiad-winner-1.webp",
+    ],
+    span: "size-small"
+  },
+  {
+    title: "2nd Indian Abacus Regional Level Olympiad",
+    date: "Regional Event",
+    category: "Regional Level",
+    description: "Student securing top position at the 2nd Indian Abacus Regional Level Olympiad.",
+    images: [
+      "/achievements/regional-abacus-olympiad-winner.webp",
+      "/achievements/national-abacus-olympiad-winner-1.webp",
+      "/achievements/rising-star-abacus-award.webp",
+    ],
+    span: "size-medium"
+  }
+];
+---
+
+<Layout title="Achievements & Awards | Kayal Academy Trichy" description="Explore the prestigious awards, medals, and recognitions won by Kayal Academy students at state and national level Abacus competitions.">
+  <Fragment slot="head">
+    <link rel="preload" as="image" href="/achievements/national-abacus-olympiad-winner-1.webp" />
+  </Fragment>
+
+  <PageHeader 
+    title="Milestones of Excellence" 
+    description="A visual journey of our success stories, awards, and the incredible milestones our students have achieved over the past 3 years."
+  />
+  
+  <section class="achievements-section section">
+    <div class="container">
+      
+      <!-- Key Stats Summary -->
+      <div class="stats-ribbon glass">
+        <div class="stat-item">
+          <div class="stat-num text-gradient">3+</div>
+          <div class="stat-label">Years of Legacy</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num text-gradient">200+</div>
+          <div class="stat-label">Successful Alumni</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num text-gradient">200+</div>
+          <div class="stat-label">State Ranks</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num text-gradient">8+</div>
+          <div class="stat-label">Premium Programs</div>
+        </div>
+      </div>
+
+      <!-- Asymmetrical Masonry Grid -->
+      <div class="masonry-grid mt-20">
+        {achievements.map((item, i) => (
+          <div
+            class={`achievement-card ${item.span} glass ${i < 2 ? '' : 'reveal'} delay-${(i % 5) * 100}`}
+            data-card-index={i}
+            data-stagger={i * 700}
+          >
+            <!-- Carousel: one slide per image -->
+            <div class="img-wrapper">
+              {item.images.map((src, j) => (
+                <div class={`carousel-slide ${j === 0 ? 'is-active' : ''}`} data-slide={j}>
+                  <img
+                    src={src}
+                    alt={item.title}
+                    loading={i === 0 && j === 0 ? "eager" : "lazy"}
+                    fetchpriority={i === 0 && j === 0 ? "high" : "auto"}
+                    decoding={i === 0 && j === 0 ? "sync" : "async"}
+                    width={item.span === 'size-large' ? 800 : 600}
+                    height={item.span === 'size-large' ? 450 : 300}
+                    referrerpolicy="no-referrer"
+                    class="achievement-img"
+                  />
+                </div>
+              ))}
+              <div class="overlay-gradient"></div>
+
+              <!-- Dots — only when multiple images -->
+              {item.images.length > 1 && (
+                <div class="carousel-dots">
+                  {item.images.map((_, j) => (
+                    <button
+                      class={`dot ${j === 0 ? 'is-active' : ''}`}
+                      data-target={j}
+                      aria-label={`Show image ${j + 1}`}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div class="card-content">
+              <span class="badge">{item.category}</span>
+              <h3 class="h3 font-heading text-white mt-4">{item.title}</h3>
+              <p class="text-white/80 mt-2">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .achievements-section {
+    padding-top: 0;
+    margin-top: -4rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Stats Ribbon */
+  .stats-ribbon {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2.5rem 2rem;
+    border-radius: var(--radius-xl);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 15px 35px -10px rgba(16, 185, 129, 0.15);
+  }
+
+  .stat-item {
+    text-align: center;
+    position: relative;
+    padding: 0 2rem;
+    min-width: 180px;
+  }
+
+  .stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 10%;
+    height: 80%;
+    width: 1px;
+    background: var(--color-border);
+  }
+
+  .stat-num {
+    font-size: 2.5rem;
+    font-weight: 800;
+    font-family: var(--font-family-heading);
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .mt-20 { margin-top: 5rem; }
+  .mt-4  { margin-top: 1rem; }
+  .mt-2  { margin-top: 0.5rem; }
+  .text-white      { color: #ffffff !important; }
+  .text-white\/80  { color: rgba(255,255,255,0.8) !important; }
+
+  /* Asymmetrical Masonry Grid */
+  .masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: dense;
+    gap: 2rem;
+  }
+
+  .achievement-card {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: var(--transition-slow);
+    box-shadow: 0 10px 30px -10px var(--color-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .size-large  { grid-column: span 2; grid-row: span 2; min-height: 450px; }
+  .size-medium { grid-column: span 2; grid-row: span 1; min-height: 300px; }
+  .size-small  { grid-column: span 1; grid-row: span 1; min-height: 300px; }
+
+  .achievement-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -15px var(--color-shadow), 0 0 0 4px rgba(16, 185, 129, 0.15);
+  }
+
+  /* ── Carousel ─────────────────────────────────────────────── */
+  .img-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+    will-change: opacity;
+  }
+
+  .carousel-slide.is-active {
+    opacity: 1;
+  }
+
+  /* Ken Burns — active slide only */
+  .carousel-slide.is-active .achievement-img {
+    animation: kenburns 8s ease-out forwards;
+  }
+
+  /* Pause on hover */
+  .achievement-card:hover .carousel-slide.is-active .achievement-img {
+    animation-play-state: paused;
+  }
+
+  @keyframes kenburns {
+    0%   { transform: scale(1)    translate(0%, 0%); }
+    100% { transform: scale(1.1) translate(-1.5%, -1%); }
+  }
+
+  .achievement-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    will-change: transform;
+  }
+
+  .overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+    z-index: 2;
+  }
+
+  /* ── Dots ─────────────────────────────────────────────────── */
+  .carousel-dots {
+    position: absolute;
+    bottom: 1rem;
+    right: 1.25rem;
+    display: flex;
+    gap: 0.4rem;
+    z-index: 3;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease, width 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .dot.is-active {
+    background: rgba(255,255,255,0.9);
+    width: 16px;
+    border-radius: 3px;
+  }
+
+  /* ── Card Content ─────────────────────────────────────────── */
+  .card-content {
+    position: relative;
+    z-index: 3;
+    padding: 2.5rem 2rem;
+    transform: translateY(10px);
+    transition: transform 0.4s ease;
+  }
+
+  .achievement-card:hover .card-content {
+    transform: translateY(0);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-full);
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(5px);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .masonry-grid { grid-template-columns: repeat(2, 1fr); }
+    .size-small   { grid-column: span 2; }
+    .size-large   { min-height: 400px; grid-row: span 1; }
+    .stats-ribbon { flex-wrap: wrap; gap: 2rem; }
+    .stat-item    { padding: 0; width: 45%; }
+    .stat-item:not(:last-child)::after { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .masonry-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .size-large, .size-medium, .size-small { grid-column: span 1; min-height: 350px; }
+    .stat-item    { width: 100%; }
+    .stats-ribbon { padding: 2rem 1rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-slide.is-active .achievement-img { animation: none; }
+  }
+</style>
+
+<script>
+  const INTERVAL = 4000; // ms between auto-advances
+
+  interface CardState {
+    slides: HTMLElement[];
+    dots: HTMLButtonElement[];
+    current: number;
+    timer: ReturnType<typeof setInterval> | null;
+    paused: boolean;
+    stagger: number;
+  }
+
+  function goTo(state: CardState, next: number): void {
+    if (next === state.current || state.slides.length <= 1) return;
+
+    state.slides[state.current].classList.remove('is-active');
+    state.dots[state.current]?.classList.remove('is-active');
+
+    state.current = next;
+
+    state.slides[next].classList.add('is-active');
+    state.dots[next]?.classList.add('is-active');
+  }
+
+  function startTimer(state: CardState): void {
+    if (state.slides.length <= 1) return;
+    state.timer = setInterval(() => {
+      if (!state.paused) goTo(state, (state.current + 1) % state.slides.length);
+    }, INTERVAL + state.stagger);
+  }
+
+  function stopTimer(state: CardState): void {
+    if (state.timer) { clearInterval(state.timer); state.timer = null; }
+  }
+
+  function initCard(card: HTMLElement): void {
+    const slides = Array.from(card.querySelectorAll<HTMLElement>('.carousel-slide'));
+    const dots   = Array.from(card.querySelectorAll<HTMLButtonElement>('.dot'));
+    const stagger = Number(card.dataset.stagger ?? 0) % 2000;
+
+    const state: CardState = { slides, dots, current: 0, timer: null, paused: false, stagger };
+
+    // Dot clicks
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation();
+        stopTimer(state);
+        goTo(state, idx);
+        startTimer(state);
+      });
+    });
+
+    // Pause on hover
+    card.addEventListener('mouseenter', () => { state.paused = true; });
+    card.addEventListener('mouseleave', () => { state.paused = false; });
+
+    startTimer(state);
+  }
+
+  function init(): void {
+    document.querySelectorAll<HTMLElement>('.achievement-card').forEach(initCard);
+  }
+
+  document.addEventListener('astro:page-load', init);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>
