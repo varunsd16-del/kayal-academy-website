@@ -1,26 +1,14 @@
 ---
 const programs = [
-  {
-    title: "Indian Abacus (Level 1)",
-    description: "The foundational program designed to introduce the abacus tool, enhance brain development, speed math, and basic concentration.",
-    image: "/courses/indian-abacus-level-1-trichy.webp",
-    features: ["Introduces Abacus Tool", "Improves Focus & Listening", "Overcomes Math Fear", "Enhances Speed & Accuracy"],
-    link: "/courses"
-  },
-  {
-    title: "Indian Abacus (Level 2)",
-    description: "Intermediate program focusing on transitioning from physical tool usage to mental image flash calculations and multi-digit addition.",
-    image: "/courses/indian-abacus-level-2-trichy.webp",
-    features: ["Mental Arithmetic Basics", "Increases Memory Retention", "Builds Self-Confidence", "Rapid Mental Addition"],
-    link: "/courses"
-  },
-  {
-    title: "Indian Abacus (Level 3)",
-    description: "Advanced program for achieving high-speed multi-digit multiplication, division, and establishing profound photographic memory.",
-    image: "/courses/indian-abacus-level-3-trichy.webp",
-    features: ["Complex Multiplication", "Photographic Memory", "Logical Brain Wiring", "Elite Calculation Speed"],
-    link: "/courses"
-  },
+ {
+  title: "Indian Abacus",
+  description: "Our complete 8-level Indian Abacus program develops mental math speed, concentration, memory, and confidence in children aged 5–14.",
+  image: "/courses/indian-abacus-classes-trichy.webp",
+  class: "abacus-img",
+  note: "Authorized Indian Abacus Franchise",
+  features: ["Mental Arithmetic", "Speed Calculation", "Improves Memory", "Boosts Concentration"],
+  link: "/courses"
+},
   {
     title: "Calligraphy & Handwriting",
     description: "Transform your child's handwriting into beautiful calligraphy. We focus on proper grip, stroke consistency, and artistic lettering.",
@@ -91,7 +79,7 @@ phonics, Hindi classes and school tuition programs for children aged 5–14.
         <a href={program.link} class={`course-card reveal delay-${(index % 3) * 100}`} aria-label={`Learn more about ${program.title} at Kayal Academy`}>
           {/* Top visual graphic with actual images */}
           <div class="card-thumbnail">
-            <img src={program.image} alt={program.title} class="course-thumbnail-img" />
+            <img src={program.image} alt={program.title} class={`course-thumbnail-img ${program.class || ""}`} />
             <div class="thumbnail-overlay"></div>
           </div>
           
@@ -109,6 +97,11 @@ phonics, Hindi classes and school tuition programs for children aged 5–14.
             </div>
             
             <h3 class="course-title">{program.title}</h3>
+
+{program.note && (
+  <span class="course-note">{program.note}</span>
+)}
+            
           </div>
           
           {/* Footer with Instructor & Category */}
@@ -230,20 +223,28 @@ phonics, Hindi classes and school tuition programs for children aged 5–14.
   }
 
   /* Image Thumbnail Header */
-  .card-thumbnail {
-    height: 200px;
-    position: relative;
-    overflow: hidden;
-  }
+ .card-thumbnail {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: #f8fafc; /* light background so image looks clean */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .course-thumbnail-img {
+
+
+.course-thumbnail-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
-  transition: transform 0.6s ease;
+  object-position: center top;
 }
-
+.abacus-img {
+  object-position: center 40%;
+}
   .course-card:hover .course-thumbnail-img {
     transform: scale(1.08); /* Zoom effect on hover */
   }
@@ -313,7 +314,12 @@ phonics, Hindi classes and school tuition programs for children aged 5–14.
     justify-content: space-between;
     align-items: center;
   }
-
+  .course-note {
+  font-size: 0.72rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-top: 4px;
+}
   .instructor {
     display: flex;
     align-items: center;
@@ -331,7 +337,9 @@ phonics, Hindi classes and school tuition programs for children aged 5–14.
     overflow: hidden;
     border: 1px solid rgba(0,0,0,0.05);
   }
-
+.programs-grid a:last-child {
+  grid-column: 2 / 3;
+}
   .avatar-circle img {
     width: 100%;
     height: 100%;

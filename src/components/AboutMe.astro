@@ -4,12 +4,11 @@ interface Props {
 }
 
 const { isExtended = false } = Astro.props;
-
 const achievements = [
-  { value: "3+", label: "Years Experience" },
-  { value: "200+", label: "Total Students" },
-  { value: "98%", label: "Success Rate" },
-  { value: "4+", label: "Certified Trainers" }
+  { value: 3, suffix: "+", label: "Years Experience" },
+  { value: 200, suffix: "+", label: "Total Students" },
+  { value: 98, suffix: "%", label: "Success Rate" },
+  { value: 4, suffix: "+", label: "Certified Trainers" }
 ];
 ---
 
@@ -88,7 +87,13 @@ const achievements = [
           <div class="achievements-grid">
             {achievements.map((item, index) => (
               <div class={`achievement-card delay-${(index % 4) * 100}`}>
-                <div class="achievement-value text-accent font-heading">{item.value}</div>
+                <div 
+  class="achievement-value text-accent font-heading counter"
+  data-target={item.value}
+  data-suffix={item.suffix}
+>
+  0
+</div>
                 <div class="achievement-label text-sm text-muted">{item.label}</div>
               </div>
             ))}
@@ -103,6 +108,48 @@ const achievements = [
     </div>
   </div>
 </section>
+
+<script>
+function initCounters() {
+  const counters = document.querySelectorAll(".counter");
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const counter = entry.target;
+      const target = parseInt(counter.dataset.target);
+      const suffix = counter.dataset.suffix || "";
+
+      let current = 0;
+      const duration = 3200;
+      const increment = target / (duration / 16);
+
+      const update = () => {
+        current += increment;
+
+        if (current < target) {
+          counter.textContent = Math.floor(current) + suffix;
+          requestAnimationFrame(update);
+        } else {
+          counter.textContent = target + suffix;
+        }
+      };
+
+      update();
+      obs.unobserve(counter);
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(counter => observer.observe(counter));
+}
+
+// Run on first load
+document.addEventListener("DOMContentLoaded", initCounters);
+
+// Run after Astro page navigation
+document.addEventListener("astro:page-load", initCounters);
+</script>
 
 <style>
   .about-me {
@@ -236,6 +283,7 @@ const achievements = [
     font-weight: 700;
     line-height: 1;
     margin-bottom: 0.5rem;
+    transition: transform .3s ease;
   }
 
   .achievement-label {
