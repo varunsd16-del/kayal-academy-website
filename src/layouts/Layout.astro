@@ -16,7 +16,7 @@ const businessInfo = {
   email: "contact@kayalacademy.com"
 };
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://kayalacademy.com');
+const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
 ---
 
 <!doctype html>
@@ -27,13 +27,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://kayalaca
     <meta name="keywords" content="Abacus classes Trichy, Abacus training Trichy, Mental math classes Trichy, Tuition centre Teppakulam, Handwriting classes Trichy, Phonics classes Trichy, Kayal Academy Trichy">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-image-preview:large">
     <link rel="icon" href="/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="canonical" href={canonicalURL} />
     <link rel="preload" as="image" href="/achievements/logo.webp">
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml">
     <ViewTransitions />
     
     <title>{title}</title>
@@ -116,6 +117,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://kayalaca
   ]
 })} />
     <slot name="head" />
+    <link rel="alternate" href="https://kayalacademy.com" hreflang="en-IN">
   </head>
   <body>
     <!-- Ultra Premium Header -->
@@ -256,7 +258,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://kayalaca
         
         <div class="footer-bottom">
           <p class="text-white">&copy; {new Date().getFullYear()} Kayal Academy. All rights reserved.</p>
-          <span class="text-sm text-white opacity-75 author-attribution">Designed By Varun</span>
+          <span class="text-sm text-white opacity-75 author-attribution">Designed By VAC Solutions</span>
         </div>
       </div>
     </footer>

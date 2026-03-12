@@ -16,7 +16,7 @@ export const businessInfo = {
         zip: "620002",
         country: "IN",
         formatted:
-            "Kayal Academy, 133/96, First Floor, Opposite Annai Hostel, Teppakulam, Trichy-620002, Tamilnadu."
+            "Kayal Academy,<br>133/96, First Floor,<br>North-Andar St,<br>Opposite Annai Hostel,<br>Teppakulam,<br>Trichy - 620002,<br>Tamil Nadu"
     },
 
     phone: "+91-9159496503",
