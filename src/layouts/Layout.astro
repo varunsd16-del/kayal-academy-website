@@ -28,7 +28,11 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-image-preview:large">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -114,6 +118,52 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
     "https://www.instagram.com/kayalbalajii",
     "https://www.youtube.com/@kayalacademy",
     "https://wa.me/919159496503"
+  ]
+})} />
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What age group is eligible for Abacus classes at Kayal Academy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Children aged 5 to 14 years are eligible for our Abacus program. We offer tailored training for different age groups to ensure optimal learning outcomes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to master the Abacus at your Trichy center?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most students complete the full Abacus program in 8 levels within 12–18 months, depending on their learning pace and consistency."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you provide certification after completing the Abacus course?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, upon successful completion of all 8 levels, students receive a valid certificate from Kayal Academy, recognized for its quality Abacus training in Trichy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are the Abacus classes conducted online or offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We offer both offline classes at our Teppakulam center in Trichy and online classes through video conferencing, ensuring flexibility for all students."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the fees for Abacus training at Kayal Academy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The course fee varies depending on the level and duration. Please contact us at +91-9159496503 for detailed information about our affordable Abacus program fees."
+      }
+    }
   ]
 })} />
     <slot name="head" />
