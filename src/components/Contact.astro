@@ -297,10 +297,10 @@ import { businessInfo } from "../config/business";
     text-align: center;
     margin: 2.5rem 0;
   }
-  .hours-contact{
+.hours-contact{
   display:grid;
-  grid-template-columns:160px auto;
-  row-gap:4px;
+  grid-template-columns:140px 1fr;
+  row-gap:6px;
 }
 
 .hours-contact .day{
@@ -310,9 +310,28 @@ import { businessInfo } from "../config/business";
 .hours-contact .time{
   line-height:1.6;
 }
+
 .time-indent{
   display:block;
-  margin-left:1px;
+  margin-left:0;
+}
+
+/* MOBILE FIX */
+@media (max-width: 480px){
+
+  .hours-contact{
+    grid-template-columns:1fr;
+    row-gap:2px;
+  }
+
+  .hours-contact .day{
+    margin-top:10px;
+  }
+
+  .hours-contact .time{
+    margin-bottom:6px;
+  }
+
 }
   .divider::before, .divider::after {
     content: '';
@@ -338,6 +357,11 @@ import { businessInfo } from "../config/business";
     overflow: hidden;
   }
 
+@media (max-width:768px){
+  main{
+    padding-top:100px;
+  }
+}
   .info-card-container {
     display: grid;
     grid-template-columns: 1fr;

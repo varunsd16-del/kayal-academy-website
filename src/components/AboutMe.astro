@@ -121,25 +121,33 @@ function initCounters() {
       const target = parseInt(counter.dataset.target);
       const suffix = counter.dataset.suffix || "";
 
-      let current = 0;
-      const duration = 3200;
-      const increment = target / (duration / 16);
+      let start = null;
+      const duration = 1200; // faster (1.2 seconds)
 
-      const update = () => {
-        current += increment;
+      function animate(timestamp) {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
 
-        if (current < target) {
-          counter.textContent = Math.floor(current) + suffix;
-          requestAnimationFrame(update);
+        const value = Math.floor(progress * target);
+        counter.textContent = value + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
         } else {
           counter.textContent = target + suffix;
         }
-      };
+        /* small numbers show instantly */
+if (target <= 10) {
+  counter.textContent = target + suffix;
+  obs.unobserve(counter);
+  return;
+}
+      }
 
-      update();
+      requestAnimationFrame(animate);
       obs.unobserve(counter);
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.4 });
 
   counters.forEach(counter => observer.observe(counter));
 }

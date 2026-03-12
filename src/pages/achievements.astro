@@ -142,11 +142,15 @@ const achievements = [
 <style>
   .achievements-section {
     padding-top: 0;
-    margin-top: -4rem;
+    margin-top: 4rem;
     position: relative;
     z-index: 10;
   }
-
+  @media (max-width: 768px) {
+  .achievements-section {
+    padding-top: 2rem;
+  }
+}
   /* Stats Ribbon */
   .stats-ribbon {
     display: flex;
