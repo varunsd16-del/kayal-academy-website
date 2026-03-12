@@ -35,6 +35,8 @@ const programs = [
     description: "Authorized by E Planet Learning, our Phonics classes build a strong foundation in reading, pronunciation, and vocabulary for early learners.",
     features: ["Sound Recognition", "Fluent Reading", "Spelling Accuracy", "Confidence Building"],
     image: "/courses/eplanet-phonics-classes-trichy.webp",
+    class: "abacus-img",
+    note: "Authorised Eplanet Franchise",
     link: "/courses"
   },
   {
@@ -203,7 +205,11 @@ phonics, Hindi classes and school tuition programs for children aged 5–14.
     max-width: 1200px;
     margin: 0 auto;
   }
-
+  @media (min-width: 1025px) {
+  .programs-grid a:last-child {
+    grid-column: 2 / 3;
+  }
+}
   /* Exact Course Card Style from Reference */
   .course-card {
     background: #ffffff;
