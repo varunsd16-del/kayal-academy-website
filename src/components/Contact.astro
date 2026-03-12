@@ -94,10 +94,19 @@ import { businessInfo } from "../config/business";
             </div>
             <div>
               <h4 class="font-heading text-primary text-lg">Hours</h4>
-              <div class="text-muted mt-1" style="font-size:0.95rem; line-height: 1.6;">
-                <div>Mon-Fri: 5:00 PM - 8:00 PM</div>
-                <div>Sat-Sun: 10:00 AM - 8:00 PM</div>
-              </div>
+              <div class="hours-contact text-muted mt-1">
+  <div class="day">Monday - Friday</div>
+  <div class="time">5:00 PM - 8:00 PM</div>
+
+  <div class="day">Saturday</div>
+  <div class="time">
+    10:30 AM - 1:00 PM<br>
+  <span class="time-indent">5:00 PM - 8:00 PM</span>
+  </div>
+
+  <div class="day">Sunday</div>
+  <div class="time">10:30 AM - 1:00 PM</div>
+</div>
             </div>
           </div>
         </div>
@@ -286,7 +295,23 @@ import { businessInfo } from "../config/business";
     text-align: center;
     margin: 2.5rem 0;
   }
+  .hours-contact{
+  display:grid;
+  grid-template-columns:160px auto;
+  row-gap:4px;
+}
 
+.hours-contact .day{
+  font-weight:600;
+}
+
+.hours-contact .time{
+  line-height:1.6;
+}
+.time-indent{
+  display:block;
+  margin-left:1px;
+}
   .divider::before, .divider::after {
     content: '';
     flex: 1;
