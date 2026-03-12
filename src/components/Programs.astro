@@ -337,8 +337,12 @@ phonics, Hindi classes and school tuition programs for children aged 5–14.
     overflow: hidden;
     border: 1px solid rgba(0,0,0,0.05);
   }
-.programs-grid a:last-child {
-  grid-column: 2 / 3;
+@media (max-width: 768px) {
+  .programs-grid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+    margin: 0 auto;   /* ensures perfect center */
+  }
 }
   .avatar-circle img {
     width: 100%;
