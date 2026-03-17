@@ -4,7 +4,8 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
     site: "https://kayalacademy.com",
     compressHTML: true,
-    trailingSlash: "never",
+    // Change to 'ignore' to prevent conflicts with host redirects
+    trailingSlash: "ignore",
 
     image: {
         service: {
@@ -16,7 +17,8 @@ export default defineConfig({
         sitemap({
             changefreq: "weekly",
             priority: 0.7,
-            lastmod: new Date()
+            // Remove hardcoded Date so Google sees real updates
+            // lastmod: new Date() 
         })
     ]
 });
