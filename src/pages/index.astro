@@ -13,55 +13,41 @@ import Contact from '../components/Contact.astro';
 ---
 
 <Layout
-  title="Best Abacus Classes in Trichy | Mental Math Training | Kayal Academy"
-  description="Kayal Academy offers the best Abacus classes in Trichy with expert mental math training for kids. Located in Teppakulam, we provide Indian Abacus programs, handwriting improvement, phonics, spoken Hindi and tuition classes."
+  title="Abacus Classes in Trichy | Mental Math Training | Kayal Academy"
+  description="Kayal Academy — Trichy's top abacus training centre for children aged 5–14. Authorized Indian Abacus franchise in Teppakulam. Also offering phonics, Vedic maths, Hindi & calligraphy. Book a free demo today."
+  ogTitle="Best Abacus Classes in Trichy | Kayal Academy"
+  ogDescription="Join 200+ students at Kayal Academy, Teppakulam. Expert abacus training, phonics, Vedic maths & Hindi classes for children aged 5–14. Authorized Indian Abacus franchise in Trichy."
 >
 
-<h1 class="sr-only">
-Best Abacus Classes in Trichy – Kayal Academy Mental Math Training
-</h1>
+  <!-- FIX: sr-only H1 kept exactly as-is — good for SEO -->
+  <h1 class="sr-only">
+    Best Abacus Classes in Trichy – Kayal Academy Mental Math Training
+  </h1>
 
-<Fragment slot="head">
-  <link rel="preload" as="image" href="/achievements/abacus-training-trichy-hero.webp" />
-</Fragment>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href="/achievements/abacus-training-trichy-hero.webp" />
+  </Fragment>
 
-<Hero />
-<SummerBanner />
-<PhotoBento />
-<TrustIndicators />
-<TrustFoundation />
+  <Hero />
+  <SummerBanner />
+  <PhotoBento />
+  <TrustIndicators />
+  <TrustFoundation />
+  <AboutMe />
+  <Methodology />
+  <Programs />
+  <Testimonials />
+  <Contact />
 
+  <!--
+    FIX: Removed the duplicate FAQPage schema that was here.
+    Reason: A homepage FAQPage schema is wrong — Google expects FAQ schema
+    only on pages that actually display Q&A content (i.e. /faq).
+    The correct FAQPage schema is already injected by Layout.astro
+    when Astro.url.pathname === '/faq'.
 
-
-<AboutMe />
-<Methodology />
-<Programs />
-<Testimonials />
-<Contact />
-
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "FAQPage",
- "mainEntity": [
-  {
-   "@type": "Question",
-   "name": "What age is suitable for learning Abacus?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Children aged 5 to 14 can effectively learn Abacus at Kayal Academy in Trichy. Our mental math training improves calculation speed, concentration and memory."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "Where is Kayal Academy located?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "Kayal Academy is located in Teppakulam, Tiruchirappalli offering Abacus classes, handwriting training, phonics and school tuition."
-   }
-  }
- ]
-}
-</script>
+    The LocalBusiness + EducationalOrganization schema in Layout.astro
+    already covers the homepage fully.
+  -->
 
 </Layout>

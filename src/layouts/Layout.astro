@@ -1,51 +1,56 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
+import { businessInfo } from '../config/business';
 
 interface Props {
   title: string;
   description: string;
+  // FIX 1: Added ogTitle + ogDescription so every page controls its own OG tags
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
 }
 
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  ogTitle,
+  ogDescription,
+  ogImage = "https://kayalacademy.com/open-graph/abacus-classes-trichy-kayal-academy-social-preview.jpg",
+} = Astro.props;
 
-const businessInfo = {
-  name: "Kayal Academy",
-  address: "133/96, North Andar St, Post, Theppakulam, Tiruchirappalli",
-  phone: "+91-9159496503",
-  email: "contact@kayalacademy.com"
-};
+// FIX 2: og:title and og:description fall back to page title/description if not passed
+const resolvedOgTitle       = ogTitle       ?? title;
+const resolvedOgDescription = ogDescription ?? description;
 
+// canonical URL now tracks the ACTUAL page path, not hardcoded homepage
 const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
+// FIX 5: og:url also uses the real page URL
+const ogURL = canonicalURL.toString();
 ---
 
 <!doctype html>
 <html lang="en-IN">
   <head>
-<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-ZBP83CYHSV"></script>
-<script is:inline>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-ZBP83CYHSV"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZBP83CYHSV', { page_path: window.location.pathname });
+      document.addEventListener('astro:page-load', () => {
+        gtag('config', 'G-ZBP83CYHSV', { page_path: window.location.pathname });
+      });
+    </script>
 
-  // Initial config
-  gtag('config', 'G-ZBP83CYHSV', {
-    page_path: window.location.pathname,
-  });
-
-  // Keep tracking active during Astro View Transitions
-  document.addEventListener('astro:page-load', () => {
-    gtag('config', 'G-ZBP83CYHSV', {
-      page_path: window.location.pathname,
-    });
-  });
-</script>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="keywords" content="Abacus classes Trichy, Abacus training Trichy, Mental math classes Trichy, Tuition centre Teppakulam, Handwriting classes Trichy, Phonics classes Trichy, Kayal Academy Trichy">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow, max-image-preview:large">
+
     <link rel="icon" href="/favicon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png">
@@ -57,154 +62,155 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
     <link rel="canonical" href={canonicalURL} />
     <link rel="preload" as="image" href="/achievements/logo.webp">
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml">
+    <link rel="alternate" href="https://kayalacademy.com" hreflang="en-IN">
+
     <ViewTransitions />
-    
+
     <title>{title}</title>
 
-   <!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://kayalacademy.com">
-<meta property="og:title" content="Best Abacus Classes in Trichy | Kayal Academy">
-<meta property="og:description" content="Kayal Academy offers the best Abacus classes in Trichy along with phonics, handwriting improvement, Hindi classes and tuition for students aged 5–14.">
+    <!-- ============================================================
+         FIX: Open Graph — now fully dynamic per page
+         ============================================================ -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={ogURL} />
+    <meta property="og:title"       content={resolvedOgTitle} />
+    <meta property="og:description" content={resolvedOgDescription} />
+    <meta property="og:image"       content={ogImage} />
+    <meta property="og:image:type"  content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name"   content="Kayal Academy" />
+    <meta property="og:locale"      content="en_IN" />
 
-<meta property="og:image" content="https://kayalacademy.com/open-graph/abacus-classes-trichy-kayal-academy-social-preview.jpg">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+    <!-- Twitter / X -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={resolvedOgTitle} />
+    <meta name="twitter:description" content={resolvedOgDescription} />
+    <meta name="twitter:image"       content={ogImage} />
 
-<meta property="og:site_name" content="Kayal Academy">
-<meta property="og:locale" content="en_IN">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Best Abacus Classes in Trichy | Kayal Academy" />
-<meta name="twitter:description" content="Learn Abacus, phonics, handwriting and tuition programs for children at Kayal Academy in Trichy." />
-<meta name="twitter:image" content="https://kayalacademy.com/open-graph/abacus-classes-trichy-kayal-academy-social-preview.jpg" />
-    <!-- Schema.org EducationalOrganization -->
-   <script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": ["EducationalOrganization","LocalBusiness"],
-  "@id": "https://kayalacademy.com/#business",
-  "name": "Kayal Academy",
-  "url": "https://kayalacademy.com",
-  "logo": "https://kayalacademy.com/achievements/logo.webp",
-  "image": "https://kayalacademy.com/achievements/abacus-training-trichy-hero.webp",
-
-  "description": "Kayal Academy is a leading Abacus training center in Trichy offering mental math programs, handwriting improvement, phonics training, Hindi classes and tuition support for school students.",
-
-  "telephone": "+91-9159496503",
-
-  "priceRange": "₹₹",
-
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "133/96, North Andar Street, Theppakulam",
-    "addressLocality": "Tiruchirappalli",
-    "addressRegion": "Tamil Nadu",
-    "postalCode": "620002",
-    "addressCountry": "IN"
-  },
-
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "10.8247",
-    "longitude": "78.6966"
-  },
-
-  "areaServed": {
-    "@type": "City",
-    "name": "Tiruchirappalli"
-  },
-
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-      "opens": "17:00",
-      "closes": "20:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Saturday","Sunday"],
-      "opens": "10:00",
-      "closes": "20:00"
-    }
-  ],
-
-  "sameAs": [
-    "https://www.facebook.com/kayalvizhi.senthamilselvan.2025",
-    "https://www.instagram.com/kayalbalajii",
-    "https://www.youtube.com/@kayalacademy",
-    "https://wa.me/919159496503"
-  ]
-})} />
-{Astro.url.pathname === '/faq' && (
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What age group is eligible for Abacus classes at Kayal Academy?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Children aged 5 to 14 years are eligible for our Abacus program. We offer tailored training for different age groups to ensure optimal learning outcomes."
-        }
+    <!-- ============================================================
+         Schema.org — LocalBusiness + EducationalOrganization
+         (unchanged — already correct in your original)
+         ============================================================ -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": ["EducationalOrganization", "LocalBusiness"],
+      "@id": "https://kayalacademy.com/#business",
+      "name": "Kayal Academy",
+      "url": "https://kayalacademy.com",
+      "logo": "https://kayalacademy.com/achievements/logo.webp",
+      "image": "https://kayalacademy.com/achievements/abacus-training-trichy-hero.webp",
+      "description": "Kayal Academy is a leading Abacus training center in Trichy offering mental math programs, handwriting improvement, phonics training, Hindi classes and tuition support for school students.",
+      "telephone": "+91-9159496503",
+      "priceRange": "₹₹",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "133/96, North Andar Street, Theppakulam",
+        "addressLocality": "Tiruchirappalli",
+        "addressRegion": "Tamil Nadu",
+        "postalCode": "620002",
+        "addressCountry": "IN"
       },
-      {
-        "@type": "Question",
-        "name": "How long does it take to master the Abacus at your Trichy center?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Most students complete the full Abacus program in 8 levels within 12–18 months, depending on their learning pace and consistency."
-        }
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "10.8247",
+        "longitude": "78.6966"
       },
-      {
-        "@type": "Question",
-        "name": "Do you provide certification after completing the Abacus course?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, upon successful completion of all 8 levels, students receive a valid certificate from Kayal Academy, recognized for its quality Abacus training in Trichy."
-        }
+      "areaServed": {
+        "@type": "City",
+        "name": "Tiruchirappalli"
       },
-      {
-        "@type": "Question",
-        "name": "Are the Abacus classes conducted online or offline?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We offer both offline classes at our Teppakulam center in Trichy and online classes through video conferencing, ensuring flexibility for all students."
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "17:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday","Sunday"],
+          "opens": "10:00",
+          "closes": "20:00"
         }
-      },
-      {
-        "@type": "Question",
-        "name": "What are the fees for Abacus training at Kayal Academy?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The course fee varies depending on the level and duration. Please contact us at +91-9159496503 for detailed information about our affordable Abacus program fees."
-        }
-      }
-    ]
-  })} />
-)}
+      ],
+      "sameAs": [
+        "https://www.facebook.com/kayalvizhi.senthamilselvan.2025",
+        "https://www.instagram.com/kayalbalajii",
+        "https://www.youtube.com/@kayalacademy",
+        businessInfo.whatsappUrl
+      ]
+    })} />
+
+    <!-- FAQ schema — only injected on /faq page -->
+    {Astro.url.pathname === '/faq' && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What age group is eligible for Abacus classes at Kayal Academy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Children aged 5 to 14 years are eligible for our Abacus program. We offer tailored training for different age groups to ensure optimal learning outcomes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does it take to master the Abacus at your Trichy center?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most students complete the full Abacus program in 8 levels within 12–18 months, depending on their learning pace and consistency."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you provide certification after completing the Abacus course?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, upon successful completion of all 8 levels, students receive a valid certificate from Kayal Academy, recognized for its quality Abacus training in Trichy."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are the Abacus classes conducted online or offline?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We offer both offline classes at our Teppakulam center in Trichy and online classes through video conferencing, ensuring flexibility for all students."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the fees for Abacus training at Kayal Academy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The course fee varies depending on the level and duration. Please contact us at +91-9159496503 for detailed information about our affordable Abacus program fees."
+            }
+          }
+        ]
+      })} />
+    )}
+
     <slot name="head" />
-    <link rel="alternate" href="https://kayalacademy.com" hreflang="en-IN">
   </head>
+
   <body>
     <!-- Ultra Premium Header -->
     <header class="header-wrapper">
       <div class="navbar glass-pill">
         <a href="/" class="logo">
-          <img 
-  src="/achievements/logo.webp" 
-  alt="Kayal Academy Abacus Classes in Trichy Logo" 
-  class="logo-img" 
-  width="40" 
-  height="40" 
-  fetchpriority="high" 
-/>
+          <img
+            src="/achievements/logo.webp"
+            alt="Kayal Academy Abacus Classes in Trichy Logo"
+            class="logo-img"
+            width="40"
+            height="40"
+            fetchpriority="high"
+          />
           <span class="logo-text">Kayal <span class="text-accent" style="font-family: var(--font-family-heading);">Academy</span></span>
         </a>
-        
+
         <!-- Desktop Nav -->
         <nav class="nav-links">
           <a href="/">Home</a>
@@ -229,13 +235,13 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
     <!-- Fullscreen Mobile Menu -->
     <div id="mobile-menu" class="mobile-menu">
       <div class="mobile-menu-content">
-          <a href="/">Home</a>
-          <a href="/about" aria-label="About Kayal Academy">About</a>
-          <a href="/courses" aria-label="Courses offered by Kayal Academy">Courses</a>
-          <a href="/feedback" aria-label="Feedback from students of Kayal Academy">Feedback</a>
-          <a href="/achievements" aria-label="Achievements of Kayal Academy">Achievements</a>
-          <a href="/faq" aria-label="FAQ about Kayal Academy">FAQ</a>
-          <a href="/contact" class="btn btn-primary mt-4" aria-label="Contact Kayal Academy">Get in Touch</a>
+        <a href="/">Home</a>
+        <a href="/about" aria-label="About Kayal Academy">About</a>
+        <a href="/courses" aria-label="Courses offered by Kayal Academy">Courses</a>
+        <a href="/feedback" aria-label="Feedback from students of Kayal Academy">Feedback</a>
+        <a href="/achievements" aria-label="Achievements of Kayal Academy">Achievements</a>
+        <a href="/faq" aria-label="FAQ about Kayal Academy">FAQ</a>
+        <a href="/contact" class="btn btn-primary mt-4" aria-label="Contact Kayal Academy">Get in Touch</a>
       </div>
     </div>
 
@@ -250,11 +256,11 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
       <slot />
     </main>
 
-    <!-- Ultra Premium Footer (Compact) -->
+    <!-- Ultra Premium Footer -->
     <footer class="footer">
       <div class="footer-glow glow-left"></div>
       <div class="footer-glow glow-right"></div>
-      
+
       <div class="container relative z-10">
         <div class="footer-grid">
           <div class="footer-brand">
@@ -267,13 +273,14 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
               <a href="https://www.instagram.com/kayalbalajii?igsh=eXU5YW1rYnl3bzNy" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
               </a>
-             <a href="https://www.facebook.com/kayalvizhi.senthamilselvan.2025" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon">
+              <a href="https://www.facebook.com/kayalvizhi.senthamilselvan.2025" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
               </a>
               <a href="https://youtube.com/@kayal_academy_official?si=xD6b-Dh3sOsoF9cQ" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="social-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
               </a>
-              <a href="https://wa.me/919159496503" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social-icon">
+              <!-- FIX: WhatsApp social icon uses businessInfo.whatsappUrl from business.ts -->
+              <a href={businessInfo.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.876 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
               </a>
               <a href="https://www.threads.net/@kayalacademy" target="_blank" rel="noopener noreferrer" aria-label="Threads" class="social-icon">
@@ -281,9 +288,9 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
                   <path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.229c8.249.053 14.474 2.452 18.503 7.129 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.15-23.836 1.374-39.156 15.298-38.179 34.6.49 9.775 5.065 18.145 12.877 23.532 6.61 4.588 15.143 6.835 24.03 6.34 11.692-.648 20.856-5.101 27.243-13.247 4.908-6.194 8.019-14.22 9.406-24.367 5.638 3.405 9.811 7.939 12.158 13.375 3.905 9.069 4.136 23.975-8.088 36.146-10.695 10.653-23.554 15.257-42.962 15.394-21.541-.152-37.858-7.085-48.478-20.605C37.136 140.64 32.073 124.42 31.9 103.96c.173-20.46 5.236-36.68 15.048-48.2C57.569 42.25 73.886 35.317 95.427 35.165c21.693.152 38.353 7.12 49.525 20.71 5.48 6.674 9.633 15.03 12.357 24.846l16.147-4.308c-3.329-12.276-8.671-22.865-15.99-31.576C141.521 26.8 120.979 17.67 95.486 17.5h-.114C70.007 17.67 49.785 26.832 35.831 44.5 23.426 60.323 17.043 82.35 16.87 103.96v.08c.173 21.61 6.556 43.637 18.961 59.46 13.954 17.668 34.176 26.83 58.58 27h.114c21.816-.152 37.222-5.867 49.892-18.489 16.942-16.874 16.402-37.982 10.83-50.98-3.981-9.248-11.522-16.79-22.71-21.042Zm-39.645 37.222c-10.44.587-21.305-4.097-21.852-14.189-.406-7.87 5.555-16.649 23.551-17.667 2.06-.119 4.086-.176 6.082-.176 6.645 0 12.876.632 18.556 1.86-2.111 26.304-16.044 29.586-26.337 30.172Z"/>
                 </svg>
               </a>
-      </div>
+            </div>
           </div>
-          
+
           <div class="footer-links">
             <h4>Academy</h4>
             <a href="/about">About Us</a>
@@ -297,7 +304,7 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
             <a href="/courses">Abacus Classes Trichy</a>
             <a href="/courses">Handwriting Courses</a>
             <a href="/courses">Tuition Centre Teppakulam</a>
-            <a href="/courses"> Spoken Hindi</a>
+            <a href="/courses">Spoken Hindi</a>
             <a href="/courses">Phonics</a>
           </div>
 
@@ -305,43 +312,38 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
             <h4 class="footer-heading">Contact Us</h4>
             <div class="contact-item">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-accent contact-icon" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              <span class="text-white">KAYAL ACADEMY<br/>133/96 , First Floor,<br>North-Andar St, <br>Annai  hostel Opposite, <br>Teppakulam (Post), <br>Trichy-620002.</span>
+              <span class="text-white">KAYAL ACADEMY<br/>133/96, First Floor,<br>North-Andar St,<br>Annai hostel Opposite,<br>Teppakulam (Post),<br>Trichy-620002.</span>
             </div>
             <div class="contact-item">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-accent contact-icon" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
               <span class="text-white" style="line-height: 1.6;">+91 91594 96503.<br/>+91 74490 18862.</span>
             </div>
             <div class="contact-item">
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-accent contact-icon" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="10"></circle>
-    <polyline points="12 6 12 12 16 14"></polyline>
-  </svg>
-
-<div class="hours">
-  <div class="day">Monday - Friday</div>
-  <div class="time">5.00 pm - 8.00 pm.</div>
-
-  <div class="day">Saturday</div>
-  <div class="time">
-    10.30 am - 1.00 pm.<br>
-    5.00 pm - 8.00 pm.
-  </div>
-
-  <div class="day">Sunday</div>
-  <div class="time">10.30 am - 1.00pm.</div>
-</div>
-</div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-accent contact-icon" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <div class="hours">
+                <div class="day">Monday - Friday</div>
+                <div class="time">5.00 pm - 8.00 pm.</div>
+                <div class="day">Saturday</div>
+                <div class="time">10.30 am - 1.00 pm.<br>5.00 pm - 8.00 pm.</div>
+                <div class="day">Sunday</div>
+                <div class="time">10.30 am - 1.00pm.</div>
+              </div>
+            </div>
           </div>
-        
+        </div>
+
         <div class="footer-bottom">
           <p class="text-white">&copy; {new Date().getFullYear()} Kayal Academy. All rights reserved.</p>
-          <span class="text-sm text-white opacity-75 author-attribution">Designed By VAC Solutions</span>
+          <span class="text-sm text-white opacity-75 author-attribution">Designed By VaC Solutions</span>
         </div>
       </div>
     </footer>
 
-    <!-- Floating WhatsApp -->
-    <a href={`https://wa.me/${businessInfo.phone.replace(/[^0-9]/g, '')}`} 
+    <!-- Floating WhatsApp — uses businessInfo.whatsappUrl from business.ts -->
+    <a href={businessInfo.whatsappUrl}
        class="floating-whatsapp"
        target="_blank"
        rel="noopener noreferrer"
@@ -353,29 +355,23 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
 
     <!-- Mobile Sticky Footer CTA -->
     <div class="mobile-sticky-cta">
-      <a href={`tel:${businessInfo.phone}`} class="btn btn-primary d-block">
+      <a href={`tel:${businessInfo.phoneClean}`} class="btn btn-primary d-block">
         Call Now
       </a>
     </div>
 
     <script>
-      // Navigation Menu Logic
       const initNav = () => {
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
-        
-        if(btn && menu) {
-          // Clean up old listeners if re-running
-          const newBtn = btn.cloneNode(true);
+        if (btn && menu) {
+          const newBtn = btn.cloneNode(true) as HTMLElement;
           btn.parentNode?.replaceChild(newBtn, btn);
-          
           newBtn.addEventListener('click', () => {
             newBtn.classList.toggle('active');
             menu.classList.toggle('active');
             document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
           });
-          
-          // Close menu on link click
           menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
               newBtn.classList.remove('active');
@@ -386,32 +382,19 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
         }
       };
 
-      // Intersection Observer for Scroll Animations
       const initReveal = () => {
         const reveals = document.querySelectorAll('.reveal');
-        
-        const revealOptions = {
-          threshold: 0.15,
-          rootMargin: "0px 0px -50px 0px"
-        };
-        
-        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+        const observer = new IntersectionObserver((entries, obs) => {
           entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-              return;
-            } else {
+            if (entry.isIntersecting) {
               entry.target.classList.add('active');
-              observer.unobserve(entry.target); // Only animate once
+              obs.unobserve(entry.target);
             }
           });
-        }, revealOptions);
-        
-        reveals.forEach(reveal => {
-          revealOnScroll.observe(reveal);
-        });
+        }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+        reveals.forEach(el => observer.observe(el));
       };
 
-      // Run on initial load and after Astro ViewTransitions
       document.addEventListener('astro:page-load', () => {
         initNav();
         initReveal();
@@ -421,19 +404,18 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
 </html>
 
 <style>
-  /* Ultra Premium Header */
   .header-wrapper {
     position: fixed;
     top: 1.5rem;
     left: 0;
     right: 0;
-    z-index: 1000; /* Increased Z-index to guarantee it sits above everything */
+    z-index: 1000;
     display: flex;
     justify-content: center;
     padding: 0 1rem;
     pointer-events: none;
   }
-  
+
   .navbar.glass-pill {
     pointer-events: auto;
     display: flex;
@@ -457,156 +439,53 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
     box-shadow: 0 15px 45px -10px rgba(6, 95, 70, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   }
 
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    text-decoration: none;
-  }
-
-  .logo-img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
-  }
-
+  .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+  .logo-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3); }
   .logo-text { font-size: 1.4rem; font-weight: 800; color: var(--color-text); letter-spacing: -0.02em; }
 
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    align-items: center;
-  }
-
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; }
   .nav-links a {
-    font-weight: 500;
-    color: var(--color-text-muted);
-    font-size: 0.95rem;
-    position: relative;
-    padding: 0.5rem 0;
-    transition: color 0.3s ease;
-    text-decoration: none;
+    font-weight: 500; color: var(--color-text-muted); font-size: 0.95rem;
+    position: relative; padding: 0.5rem 0; transition: color 0.3s ease; text-decoration: none;
   }
-
   .nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%) scale(0);
-    background-color: var(--color-primary);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    opacity: 0;
+    content: ''; position: absolute; width: 5px; height: 5px; border-radius: 50%;
+    bottom: -2px; left: 50%; transform: translateX(-50%) scale(0);
+    background-color: var(--color-primary); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); opacity: 0;
   }
-
   .nav-links a:hover { color: var(--color-primary); }
   .nav-links a:hover::after { transform: translateX(-50%) scale(1); opacity: 1; }
 
   .btn-sm { padding: 0.75rem 1.5rem; border-radius: 100px; font-weight: 600; font-size: 0.9rem; }
   .btn-glow { box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); transition: all 0.3s ease; }
   .btn-glow:hover { box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5); transform: translateY(-2px); }
-
   .desktop-only { display: inline-flex; }
-  
-.hours{
-  display:grid;
-  grid-template-columns:160px 1fr;
-  row-gap:6px;
-  column-gap:12px;
-}
 
-.hours .day{
-  font-weight:600;
-  color:#ffffff;
-  white-space:nowrap;
-}
+  .hours { display: grid; grid-template-columns: 160px 1fr; row-gap: 6px; column-gap: 12px; }
+  .hours .day { font-weight: 600; color: #ffffff; white-space: nowrap; }
+  .hours .time { line-height: 1.6; color: #ffffff; white-space: nowrap; }
 
-.hours .time{
-  line-height:1.6;
-  color:#ffffff;
-  white-space:nowrap;
-}
-  /* Mobile Menu Button */
   .mobile-menu-btn {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 24px;
-    height: 18px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 200;
-    padding: 0;
+    display: none; flex-direction: column; justify-content: space-between;
+    width: 24px; height: 18px; background: transparent; border: none; cursor: pointer; z-index: 200; padding: 0;
   }
-  .mobile-menu-btn span {
-    width: 100%;
-    height: 2px;
-    background-color: var(--color-primary-dark);
-    transition: all 0.3s ease;
-    border-radius: 2px;
-  }
+  .mobile-menu-btn span { width: 100%; height: 2px; background-color: var(--color-primary-dark); transition: all 0.3s ease; border-radius: 2px; }
   .mobile-menu-btn.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
   .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
   .mobile-menu-btn.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-  /* Fullscreen Mobile Menu */
   .mobile-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 99;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform: translateY(-20px);
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    z-index: 99; display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform: translateY(-20px);
   }
+  .mobile-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
+  .mobile-menu-content { display: flex; flex-direction: column; gap: 1.5rem; align-items: center; text-align: center; width: 100%; padding: 2rem; }
+  .mobile-menu-content a:not(.btn) { font-size: 1.5rem; font-weight: 700; color: var(--color-primary-dark); text-decoration: none; transition: color 0.3s ease; }
+  .mobile-menu-content a:hover { color: var(--color-primary); }
 
-  .mobile-menu.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .mobile-menu-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    padding: 2rem;
-  }
-
-  .mobile-menu-content a:not(.btn) {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-primary-dark);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .mobile-menu-content a:hover {
-    color: var(--color-primary);
-  }
-
-  @media (min-width: 901px) {
-    .mobile-menu { display: none !important; }
-  }
-
+  @media (min-width: 901px) { .mobile-menu { display: none !important; } }
   @media (max-width: 900px) {
     .nav-links { display: none; }
     .desktop-only { display: none !important; }
@@ -615,223 +494,55 @@ const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
     .logo-text { font-size: 1.2rem; }
   }
 
-  /* Ultra Premium Footer */
+  /* Footer */
   .footer {
-    position: relative;
-    background-color: var(--color-primary-dark);
-    color: #f8fafc;
-    padding: 4rem 0 2rem;
-    margin-top: 4rem;
-    overflow: hidden;
-    border-top-left-radius: 2rem;
-    border-top-right-radius: 2rem;
+    position: relative; background-color: var(--color-primary-dark); color: #f8fafc;
+    padding: 4rem 0 2rem; margin-top: 4rem; overflow: hidden;
+    border-top-left-radius: 2rem; border-top-right-radius: 2rem;
   }
-
-  .footer-glow {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    filter: blur(150px);
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.15; /* Subtler glow */
-  }
+  .footer-glow { position: absolute; width: 600px; height: 600px; border-radius: 50%; filter: blur(150px); z-index: 0; pointer-events: none; opacity: 0.15; }
   .glow-left { top: -300px; left: -200px; background: var(--color-primary-light); }
   .glow-right { bottom: -200px; right: -200px; background: var(--color-accent); }
 
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
-  }
-
-  .footer-logo-container {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-  }
-  .footer-logo-img {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  .footer-logo {
-    font-size: 1.8rem;
-    font-family: var(--font-family-heading);
-    color: #ffffff;
-    margin-bottom: 0;
-  }
-
-  .footer-desc {
-  color: #ffffff;
-  line-height: 1.8;
-  font-size: 0.95rem;
-  max-width: 350px;
-  text-align: justify;
-}
-  .social-icon svg {
-  width: 20px;
-  height: 20px;
-}
-  .footer-brand-socials {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1.25rem;
-  }
-  .footer h4 { 
-    color: white; 
-    margin-bottom: 1.25rem; 
-    font-size: 0.95rem; 
-    text-transform: uppercase; 
-    letter-spacing: 0.05em; 
-    font-weight: 800; 
-  }
-    .sat-time {
-  display: inline-block;
-}
-
-.sat-time span {
-  display: block;
-  margin-left: 75px;
-}
-  .footer-links a { 
-    color: #ffffff;
-    margin-bottom: 0.85rem; 
-    display: block; 
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    text-decoration: none;
-  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-logo-container { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+  .footer-logo-img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+  .footer-logo { font-size: 1.8rem; font-family: var(--font-family-heading); color: #ffffff; margin-bottom: 0; }
+  .footer-desc { color: #ffffff; line-height: 1.8; font-size: 0.95rem; max-width: 350px; text-align: justify; }
+  .social-icon svg { width: 20px; height: 20px; }
+  .footer-brand-socials { display: flex; gap: 0.75rem; margin-top: 1.25rem; }
+  .footer h4 { color: white; margin-bottom: 1.25rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 800; }
+  .footer-links a { color: #ffffff; margin-bottom: 0.85rem; display: block; font-weight: 500; font-size: 0.9rem; transition: all 0.3s ease; text-decoration: none; }
   .footer-links a:hover { color: white; transform: translateX(5px); }
-  .time-indent {
-  display: block;
-  padding-left: 46px;
-}
- .contact-item {
-  display:flex;
-  align-items:flex-start;
-  gap:0.75rem;
-  color:#ffffff;
-  margin-bottom:1.15rem;
-  line-height:1.5;
-  font-size:0.9rem;
-}
-  .contact-icon {
-    color: var(--color-primary-light);
-    flex-shrink: 0;
-    margin-top: 0.15rem;
-  }
-
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    font-size: 0.85rem;
-    color: #ffffff;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
+  .contact-item { display: flex; align-items: flex-start; gap: 0.75rem; color: #ffffff; margin-bottom: 1.15rem; line-height: 1.5; font-size: 0.9rem; }
+  .contact-icon { color: var(--color-primary-light); flex-shrink: 0; margin-top: 0.15rem; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; color: #ffffff; flex-wrap: wrap; gap: 1rem; }
   .text-white { color: #ffffff !important; }
-
-  .footer-socials {
-    display: flex;
-    gap: 1rem;
-    color: #ffffff;
-    align-items: center;
-  }
-
-  .social-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    transition: all 0.3s ease;
-    text-decoration: none;
-  }
-
-  .social-icon:hover {
-    background: var(--color-primary);
-    color: #ffffff;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
-  }
-
+  .social-icon { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.1); color: #ffffff; transition: all 0.3s ease; text-decoration: none; }
+  .social-icon:hover { background: var(--color-primary); color: #ffffff; transform: translateY(-3px); box-shadow: 0 4px 15px rgba(16,185,129,0.4); }
   .opacity-75 { opacity: 0.75; }
 
-  @media (max-width: 1024px) {
-    .footer-grid { grid-template-columns: 1fr 1fr 1fr; gap: 2.5rem; }
-    .footer-brand { grid-column: 1 / -1; }
-  }
+  @media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr 1fr; gap: 2.5rem; } .footer-brand { grid-column: 1 / -1; } }
+  @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; } }
 
-  @media (max-width: 768px) {
-    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-  }
-
-  /* Floating UI */
+  /* Floating WhatsApp */
   .floating-whatsapp {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    background-color: #25D366;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 14px 0 rgba(37, 211, 102, 0.39);
-    z-index: 99;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: fixed; bottom: 24px; right: 24px; background-color: #25D366; color: white;
+    width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 14px 0 rgba(37, 211, 102, 0.39); z-index: 99; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
-
-  .floating-whatsapp:hover {
-    transform: scale(1.1);
-  }
+  .floating-whatsapp:hover { transform: scale(1.1); }
 
   .mobile-sticky-cta {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 10px 16px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid var(--color-border);
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
-    z-index: 98;
-    display: none;
+    position: fixed; bottom: 0; left: 0; right: 0; padding: 10px 16px;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+    border-top: 1px solid var(--color-border); box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    z-index: 98; display: none;
   }
-
-  .d-block {
-    display: block;
-    width: 100%;
-    text-align: center;
-    border-radius: var(--radius-sm);
-  }
+  .d-block { display: block; width: 100%; text-align: center; border-radius: var(--radius-sm); }
 
   @media (max-width: 768px) {
-    .floating-whatsapp {
-      bottom: 80px;
-      right: 16px;
-      width: 50px;
-      height: 50px;
-    }
-    .mobile-sticky-cta {
-      display: block;
-    }
+    .floating-whatsapp { bottom: 80px; right: 16px; width: 50px; height: 50px; }
+    .mobile-sticky-cta { display: block; }
   }
 </style>

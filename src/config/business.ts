@@ -22,6 +22,16 @@ export const businessInfo = {
     phone: "+91-9159496503",
     alternatePhone: "+91-74490-18862",
 
+    // FIX: Added these two helpers so every component uses ONE source of truth
+    // and never produces wa.me/undefined again.
+    //
+    // Usage in any .astro file:
+    //   import { businessInfo } from '../config/business';
+    //   <a href={businessInfo.whatsappUrl}>WhatsApp</a>
+    //   <a href={`tel:${businessInfo.phoneClean}`}>Call</a>
+    whatsappUrl: "https://wa.me/919159496503",   // ready-to-use full URL
+    phoneClean: "+91-9159496503",                 // E.164 for tel: links
+
     email: "contact@kayalacademy.com",
     website: "https://kayalacademy.com",
 
@@ -33,9 +43,11 @@ export const businessInfo = {
     map: "https://maps.google.com/?q=Kayal+Academy+Trichy",
 
     socialLinks: {
-        instagram: "https://www.instagram.com/kayalacademy",
-        facebook: "https://www.facebook.com/kayalacademy",
-        youtube: "https://www.youtube.com/@kayalacademy",
+        instagram: "https://www.instagram.com/kayalbalajii?igsh=eXU5YW1rYnl3bzNy",
+        facebook: "https://www.facebook.com/kayalvizhi.senthamilselvan.2025",
+        youtube: "https://youtube.com/@kayal_academy_official?si=xD6b-Dh3sOsoF9cQ",
+        threads: "https://www.threads.net/@kayalacademy",
+        // FIX: kept whatsapp here too for schema/sameAs usage
         whatsapp: "https://wa.me/919159496503"
     },
 
@@ -54,11 +66,14 @@ export const businessInfo = {
 
     keywords: [
         "Abacus Classes in Trichy",
-        "Abacus Classes in Near Me",
+        "Abacus Classes Near Me",
         "Mental Math Training",
         "Tuition Centre in Teppakulam",
         "Indian Abacus Training",
         "Handwriting Classes Trichy",
-        "Spoken Hindi Trichy"
+        "Spoken Hindi Trichy",
+        "Phonics Classes Trichy",
+        "Vedic Maths Trichy",
+        "Calligraphy Classes Trichy"
     ]
 };
