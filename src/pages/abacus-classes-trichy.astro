@@ -1,0 +1,362 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Certifications from '../components/Certifications.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Contact from '../components/Contact.astro';
+
+const levels = [
+  { 
+    title: "Level 1-2: Foundations", 
+    desc: "Mastering the abacus tool and basic addition/subtraction techniques.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`
+  },
+  { 
+    title: "Level 3-5: Speed Building", 
+    desc: "Introducing mental arithmetic and complex multi-digit calculations.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`
+  },
+  { 
+    title: "Level 6-8: Advanced Mastery", 
+    desc: "Lightning fast division, multiplication, and competitive level math.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>`
+  },
+  { 
+    title: "National Olympiad Prep", 
+    desc: "Specialized training for state and national level abacus competitions.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>`
+  }
+];
+---
+
+<Layout 
+  title="Abacus Classes in Trichy for Kids | Best Mental Math Training"
+  description="Master mental math with Kayal Academy's Authorized Indian Abacus classes in Trichy. The #1 rated Abacus center for children aged 5-14 in Teppakulam & Srirangam."
+>
+  <PageHeader 
+    title="Abacus Classes in Trichy for Kids"
+    description="Unlock your child's hidden potential with our world-class Indian Abacus program. The most trusted training center in Trichy with 100% student success rate."
+  />
+
+  <section class="section abacus-detail">
+    <div class="container">
+      <div class="grid-2 gap-12 items-center">
+        <div class="reveal reveal-left order-2 md:order-1">
+          <span class="badge mb-4"><strong>Authorized Franchise</strong></span>
+          <h2 class="h2 mb-6">Benefits of <span class="text-accent">Abacus Training</span></h2>
+          <div class="prose text-muted">
+            <p>Abacus training is more than just math; it's a complete brain development program. By using the physical abacus tool, children learn to visualize numbers as images, which significantly boosts their cognitive abilities.</p>
+            <p>Our students experience dramatic improvements in <strong>Concentration, Memory, and Logical Thinking</strong>, helping them excel not just in mathematics, but in all academic subjects.</p>
+          </div>
+          
+          <div class="stats-row mt-10">
+            <div class="stat-item">
+              <span class="stat-num">10X</span>
+              <span class="stat-label">Calculation Speed</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">8+</span>
+              <span class="stat-label">Levels of Mastery</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">Elite</span>
+              <span class="stat-label">Instructors</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="reveal reveal-right relative order-1 md:order-2">
+          <div class="image-wrapper">
+            <img src="/courses/indian-abacus-classes-trichy.webp" alt="Abacus Classes in Trichy - Kayal Academy" class="rounded-2xl shadow-2xl" />
+            <div class="floating-badge reveal delay-300">
+              <div class="badge-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+              </div>
+              <span class="badge-text">#1 Rated Center</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-light-emerald">
+    <div class="container">
+      <div class="grid-2 gap-12 items-center">
+        <div class="reveal reveal-left order-2 md:order-1">
+           <div class="location-grid">
+             <div class="location-card glass">
+                <h4 class="h4 text-primary mb-2">Teppakulam (Main)</h4>
+                <p class="text-sm">First Floor, North-Andar St, Near NSB Road</p>
+             </div>
+             <div class="location-card glass">
+                <h4 class="h4 text-primary mb-2">Srirangam</h4>
+                <p class="text-sm">15-min Drive to our Center</p>
+             </div>
+             <div class="location-card glass">
+                <h4 class="h4 text-primary mb-2">K.K. Nagar</h4>
+                <p class="text-sm">Direct Bus Access to Teppakulam</p>
+             </div>
+             <div class="location-card glass">
+                <h4 class="h4 text-primary mb-2">Woraiyur</h4>
+                <p class="text-sm">Nearby & Easily Accessible</p>
+             </div>
+           </div>
+        </div>
+        <div class="reveal reveal-right order-1 md:order-2">
+          <span class="badge mb-4"><strong>Local Reach</strong></span>
+          <h2 class="h2 mb-6">Easily Accessible in <span class="text-accent">Trichy</span></h2>
+          <p class="text-muted text-lg">While our main authorized center is in <strong>Teppakulam</strong>, we are the preferred choice for parents in <strong>Srirangam, K.K. Nagar, and Woraiyur</strong> due to our central location and world-class training quality.</p>
+          <a href="/contact/" class="btn btn-primary mt-8">Get Directions to Teppakulam</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-dark overflow-hidden">
+    <div class="container relative z-10">
+      <div class="text-center mb-16 reveal">
+        <h2 class="h2 font-heading text-white">Why Kayal Academy <span class="text-primary-light">(USP)</span></h2>
+        <p class="text-white opacity-80 mt-4 max-w-2xl mx-auto">As an Authorized Indian Abacus Franchise, we provide a standardized curriculum that is recognized globally.</p>
+      </div>
+
+      <div class="levels-grid">
+        {levels.map((level, i) => (
+          <div class="level-card glass-dark reveal delay-${i * 100}">
+            <div class="level-icon" set:html={level.icon}></div>
+            <h4 class="h4 font-heading text-white mb-3">{level.title}</h4>
+            <p class="text-sm text-white opacity-80">{level.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="bg-decoration"></div>
+  </section>
+
+  <section class="section testimonials-section">
+    <div class="container">
+      <div class="text-center mb-16 reveal">
+        <h2 class="h2">Parent <span class="text-accent">Testimonials</span></h2>
+        <p class="text-muted mt-4">See why hundreds of Trichy parents trust Kayal Academy for their child's brain development.</p>
+      </div>
+      <Testimonials />
+    </div>
+  </section>
+
+  <Certifications />
+  
+  <section id="call-now" class="section cta-section bg-primary text-white text-center">
+    <div class="container">
+      <h2 class="h2 text-white mb-6">Call Now for a Free Demo</h2>
+      <p class="text-lg opacity-90 mb-10 max-w-2xl mx-auto">Give your child the unfair advantage in academics. Book your free demo class at our Trichy centers today.</p>
+      <div class="flex justify-center gap-6">
+        <a href="tel:+919842424242" class="btn btn-white btn-lg">Call +91 98424 24242</a>
+        <a href="/contact/" class="btn glass-btn btn-lg">Book Online</a>
+      </div>
+    </div>
+  </section>
+
+  <Contact />
+</Layout>
+
+<style>
+  .abacus-detail {
+    padding-top: 4rem;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .items-center { align-items: center; }
+
+  .stats-row {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-num {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  .image-wrapper {
+    position: relative;
+  }
+
+  .floating-badge {
+    position: absolute;
+    bottom: -1rem;
+    right: -1rem;
+    background: var(--color-primary);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 100px;
+    box-shadow: 0 10px 25px rgba(6, 78, 59, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 20;
+    animation: floating-drift 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes floating-drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-5px, -5px); }
+  }
+
+  .badge-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary-light);
+  }
+
+  .badge-text {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .bg-light-emerald {
+    background-color: rgba(16, 185, 129, 0.05);
+  }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .location-card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: white;
+    border: 1px solid var(--color-border);
+  }
+
+  .bg-dark {
+    background: #064e3b;
+    padding: 6rem 0;
+    position: relative;
+    color: white;
+  }
+
+  .bg-dark h2, .bg-dark h4 {
+    color: white !important;
+  }
+
+  .bg-dark p {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  .levels-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  .level-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2.25rem 2rem;
+    border-radius: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .level-card:hover {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: var(--color-primary-light);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.2);
+  }
+
+  .level-icon {
+    margin-bottom: 2rem;
+    color: var(--color-primary-light);
+  }
+
+  .bg-decoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section {
+    background-color: var(--color-primary);
+    padding: 6rem 0;
+  }
+
+  .cta-section h2 {
+    color: white !important;
+  }
+
+  .cta-section p {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  .glass-btn {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white !important;
+    transition: all 0.3s ease;
+  }
+
+  .glass-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+  }
+
+  .btn-white {
+    background: white;
+    color: var(--color-primary);
+  }
+
+  .order-2 { order: 2; }
+  .order-1 { order: 1; }
+
+  @media (min-width: 769px) {
+    .md\:order-1 { order: 1; }
+    .md\:order-2 { order: 2; }
+  }
+
+  @media (max-width: 1024px) {
+    .levels-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
+    .levels-grid { grid-template-columns: 1fr; }
+    .location-grid { grid-template-columns: 1fr; }
+    .stats-row { justify-content: center; }
+    .floating-badge { display: none; }
+  }
+</style>

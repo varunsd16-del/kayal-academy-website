@@ -1,0 +1,183 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Certifications from '../components/Certifications.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Contact from '../components/Contact.astro';
+
+const modules = [
+  { 
+    title: "Primary (Grades 1-5)", 
+    desc: "Building strong foundations in Math, Science, and English with interactive learning.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg>`
+  },
+  { 
+    title: "Middle School (Grades 6-8)", 
+    desc: "Deepening conceptual understanding and exam preparation across all major boards.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`
+  },
+  { 
+    title: "Concept Clearing", 
+    desc: "Dedicated doubt-clearing sessions to ensure no student is left behind.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`
+  },
+  { 
+    title: "Board Exam Focus", 
+    desc: "Specialized coaching for CBSE, ICSE, and State Board curriculums.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>`
+  }
+];
+---
+
+<Layout 
+  title="School Tuitions in Trichy | Best Coaching Centre Teppakulam"
+  description="Premium school tuitions for grades 1-8 in Trichy. Specialized coaching for CBSE, ICSE & State Boards at Kayal Academy. Expert faculty and personalized attention."
+>
+  <PageHeader 
+    title="School Tuitions (Grades 1-8)"
+    description="Empowering students with conceptual clarity and academic excellence. Our expert tutors provide personalized coaching tailored to every child's learning pace."
+  />
+
+  <section class="section tuition-detail">
+    <div class="container">
+      <div class="grid-2 gap-12 items-center">
+        <div class="reveal reveal-left order-2 md:order-1">
+          <span class="badge mb-4">Academic Excellence</span>
+          <h2 class="h2 mb-6">Expert Coaching for <span class="text-accent">All Boards</span></h2>
+          <div class="prose text-muted">
+            <p>At Kayal Academy, we believe that every child has the potential to excel when given the right guidance. Our school tuition program covers major subjects including Math, Science, and Social Studies.</p>
+            <p>We cater to students from <strong>CBSE, ICSE, and State Board</strong> backgrounds, ensuring that our teaching methods align with their specific school curriculum while fostering a love for learning.</p>
+          </div>
+          
+          <ul class="feature-list mt-8">
+            <li class="flex items-center gap-3 mb-4 font-bold text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Small Batch Sizes for Individual Attention
+            </li>
+            <li class="flex items-center gap-3 mb-4 font-bold text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Weekly Assessments & Progress Tracking
+            </li>
+            <li class="flex items-center gap-3 mb-4 font-bold text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Exam-Oriented Preparation Strategies
+            </li>
+          </ul>
+        </div>
+        
+        <div class="reveal reveal-right relative order-1 md:order-2">
+          <div class="image-wrapper">
+            <img src="/courses/school-tuitions-grade-1-to-8-trichy.webp" alt="School Tuitions at Kayal Academy" class="rounded-2xl shadow-2xl" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-dark overflow-hidden">
+    <div class="container relative z-10">
+      <div class="text-center mb-16 reveal">
+        <h2 class="h2 font-heading text-white">Our Coaching <span class="text-primary-light">Modules</span></h2>
+        <p class="text-white opacity-80 mt-4 max-w-2xl mx-auto">Structured learning paths designed to foster academic growth and confidence.</p>
+      </div>
+
+      <div class="modules-grid">
+        {modules.map((module, i) => (
+          <div class="module-card glass-dark reveal delay-${i * 100}">
+            <div class="module-icon" set:html={module.icon}></div>
+            <h4 class="h4 font-heading text-white mb-3">{module.title}</h4>
+            <p class="text-sm text-white opacity-80">{module.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="bg-decoration"></div>
+  </section>
+
+  <Certifications />
+  <Testimonials />
+  <Contact />
+</Layout>
+
+<style>
+  .tuition-detail {
+    padding-top: 4rem;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .items-center { align-items: center; }
+
+  .bg-dark {
+    background: #064e3b;
+    padding: 6rem 0;
+    position: relative;
+    color: white;
+  }
+
+  .bg-dark h2, .bg-dark h4 {
+    color: white !important;
+  }
+
+  .bg-dark p {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  .module-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2.25rem 2rem;
+    border-radius: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .module-card:hover {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: var(--color-primary-light);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.2);
+  }
+
+  .module-icon {
+    margin-bottom: 2rem;
+    color: var(--color-primary-light);
+  }
+
+  .module-card p {
+    line-height: 1.8;
+  }
+
+  .bg-decoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  @media (max-width: 1024px) {
+    .modules-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
+    .modules-grid { grid-template-columns: 1fr; }
+  }
+</style>

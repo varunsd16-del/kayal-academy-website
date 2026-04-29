@@ -3,10 +3,10 @@ import sitemap from "@astrojs/sitemap";
 import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
-    site: "https://kayalacademy.com",
+    site: "https://www.kayalacademy.com",
     compressHTML: true,
 
-    trailingSlash: "never",
+    trailingSlash: "always",
 
     adapter: cloudflare(),
 

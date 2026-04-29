@@ -135,7 +135,26 @@ h6 {
 
 p {
   color: var(--color-text-muted);
-  font-weight: 300;
+  font-weight: 400;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.feature-list {
+  margin-top: 2rem;
+  list-style: none;
+}
+
+.feature-list li {
+  margin-bottom: 1rem;
+}
+
+.feature-list li:last-child {
+  margin-bottom: 0;
 }
 
 a {
@@ -231,6 +250,17 @@ select {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  white-space: nowrap;
+}
+
+.btn-white {
+  background: white;
+  color: var(--color-primary);
+}
+
+.btn-white:hover {
+  background: #f0fdf4;
+  transform: translateY(-2px);
 }
 
 .btn::before {
@@ -312,6 +342,32 @@ select {
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+.glass-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  color: white !important;
+  backdrop-filter: blur(4px);
+}
+
+.glass-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white !important;
+}
+
+/* Dark/Primary Section Content Fixes */
+.bg-dark, .cta-section, .section.bg-primary {
+  color: white !important;
+}
+
+.bg-dark p, .cta-section p, .section.bg-primary p {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4,
+.cta-section h1, .cta-section h2, .cta-section h3, .cta-section h4 {
+  color: white !important;
+}
+
 /* Layout Utilities */
 .grid {
   display: grid;
@@ -353,9 +409,29 @@ select {
   gap: 2rem;
 }
 
+/* Flex/Grid Order Utilities */
+.order-1 { order: 1; }
+.order-2 { order: 2; }
+
+@media (min-width: 769px) {
+  .md\:order-1 { order: 1; }
+  .md\:order-2 { order: 2; }
+}
+
 @media (max-width: 768px) {
   .section {
     padding: 4rem 0;
+  }
+
+  .cta-section .flex {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .cta-section .btn {
+    width: 100%;
   }
 
   .grid-cols-2,

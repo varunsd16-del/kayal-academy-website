@@ -1,0 +1,209 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Certifications from '../components/Certifications.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Contact from '../components/Contact.astro';
+
+const features = [
+  { 
+    title: "Letter Sounds", 
+    desc: "Mastering the 44 basic sounds of the English language through interactive play.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12L2.1 12.3"/><path d="M12 12l9.8 3.4"/><path d="M12 12l-5.2 8.5"/></svg>`
+  },
+  { 
+    title: "Blending Skills", 
+    desc: "Learning to blend sounds together to read full words fluently and correctly.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 12 17.19 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/><line x1="2.98" y1="8" x2="2.98" y2="16"/><line x1="21.02" y1="8" x2="21.02" y2="16"/></svg>`
+  },
+  { 
+    title: "EPlanet Learning", 
+    desc: "Authorized curriculum providing world-class resources for early childhood literacy.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>`
+  },
+  { 
+    title: "Fluent Reading", 
+    desc: "Transforming hesitant readers into confident, expressive, and independent book lovers.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`
+  }
+];
+---
+
+<Layout 
+  title="Phonics Classes in Trichy | EPlanet Learning Franchise Teppakulam"
+  description="Master English reading and pronunciation with Kayal Academy's Authorized Phonics classes in Trichy. Powered by EPlanet Learning. Best for early learners."
+>
+  <PageHeader 
+    title="Phonics Classes for Early Learners"
+    description="Give your child the gift of fluent reading. Our Phonics program uses a multi-sensory approach to help children decode words with ease and confidence."
+  />
+
+  <section class="section phonics-detail">
+    <div class="container">
+      <div class="grid-2 gap-12 items-center">
+        <div class="reveal reveal-left order-2 md:order-1">
+          <span class="badge mb-4">Authorized Franchise</span>
+          <h2 class="h2 mb-6">World-Class <span class="text-accent">EPlanet Phonics</span></h2>
+          <div class="prose text-muted">
+            <p>Kayal Academy is an authorized franchise of <strong>EPlanet Learning</strong>, a pioneer in early childhood education. Our Phonics program is designed to simplify the complexities of English spelling and pronunciation.</p>
+            <p>Through fun activities, songs, and visual aids, we teach children how to 'decode' words, moving away from rote memorization towards true phonetic understanding.</p>
+          </div>
+          
+          <div class="stats-row mt-10">
+            <div class="stat-item">
+              <span class="stat-num">44</span>
+              <span class="stat-label">Sounds</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">100%</span>
+              <span class="stat-label">Fluency</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">Elite</span>
+              <span class="stat-label">Franchise</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="reveal reveal-right relative order-1 md:order-2">
+          <div class="image-wrapper">
+            <img src="/courses/eplanet-phonics-classes-trichy.webp" alt="Phonics Classes at Kayal Academy" class="rounded-2xl shadow-2xl" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-dark overflow-hidden">
+    <div class="container relative z-10">
+      <div class="text-center mb-16 reveal">
+        <h2 class="h2 font-heading text-white">Our Learning <span class="text-primary-light">Approach</span></h2>
+        <p class="text-white opacity-80 mt-4 max-w-2xl mx-auto">A multi-sensory journey that turns learning to read into an exciting adventure.</p>
+      </div>
+
+      <div class="features-grid">
+        {features.map((feature, i) => (
+          <div class="feature-card glass-dark reveal delay-${i * 100}">
+            <div class="feature-icon" set:html={feature.icon}></div>
+            <h4 class="h4 font-heading text-white mb-3">{feature.title}</h4>
+            <p class="text-sm text-white opacity-80">{feature.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="bg-decoration"></div>
+  </section>
+
+  <Certifications />
+  <Testimonials />
+  <Contact />
+</Layout>
+
+<style>
+  .phonics-detail {
+    padding-top: 4rem;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .items-center { align-items: center; }
+
+  .stats-row {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-num {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  .bg-dark {
+    background: #064e3b;
+    padding: 6rem 0;
+    position: relative;
+    color: white;
+  }
+
+  .bg-dark h2, .bg-dark h4 {
+    color: white !important;
+  }
+
+  .bg-dark p {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  .feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2.25rem 2rem;
+    border-radius: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .feature-card:hover {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: var(--color-primary-light);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.2);
+  }
+
+  .feature-icon {
+    margin-bottom: 2rem;
+    color: var(--color-primary-light);
+  }
+
+  .feature-card p {
+    line-height: 1.8;
+  }
+
+  .bg-decoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  @media (max-width: 1024px) {
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .stats-row { justify-content: center; }
+  }
+</style>

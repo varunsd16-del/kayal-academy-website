@@ -30,7 +30,7 @@ export const businessInfo = {
     //   <a href={businessInfo.whatsappUrl}>WhatsApp</a>
     //   <a href={`tel:${businessInfo.phoneClean}`}>Call</a>
     whatsappUrl: "https://wa.me/919159496503",   // ready-to-use full URL
-    phoneClean: "+91-9159496503",                 // E.164 for tel: links
+    phoneClean: "+919159496503",                 // E.164 for tel: links
 
     email: "contact@kayalacademy.com",
     website: "https://kayalacademy.com",
@@ -61,7 +61,21 @@ export const businessInfo = {
         "Teppakulam",
         "Srirangam",
         "Woraiyur",
-        "Cantonment"
+        "Thillai Nagar",
+        "Cantonment",
+        "K K Nagar",
+        "Karumandapam",
+        "Palakkarai",
+        "Golden Rock"
+    ],
+
+    services: [
+        "Abacus Classes in Trichy",
+        "Vedic Maths Classes",
+        "Phonics Classes",
+        "Handwriting Improvement",
+        "Spoken Hindi Classes",
+        "Tuition for School Students"
     ],
 
     keywords: [

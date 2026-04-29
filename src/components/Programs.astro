@@ -1,34 +1,40 @@
 ---
+const { 
+  showButton = true, 
+  buttonText = "Book a Free Demo Class", 
+  buttonLink = "#contact" 
+} = Astro.props;
+
 const programs = [
- {
-  title: "Indian Abacus",
-  description: "Our complete 8-level Indian Abacus program develops mental math speed, concentration, memory, and confidence in children aged 5–14.",
-  image: "/courses/indian-abacus-classes-trichy.webp",
-  class: "abacus-img",
-  note: "Authorized Indian Abacus Franchise",
-  features: ["Mental Arithmetic", "Speed Calculation", "Improves Memory", "Boosts Concentration"],
-  link: "/courses"
-},
+  {
+    title: "Best Abacus Classes in Trichy",
+    description: "Our complete 8-level Indian Abacus program develops mental math speed, concentration, memory, and confidence in children aged 5–14.",
+    image: "/courses/indian-abacus-classes-trichy.webp",
+    class: "abacus-img",
+    note: "Authorized Indian Abacus Franchise",
+    features: ["Mental Arithmetic", "Speed Calculation", "Improves Memory", "Boosts Concentration"],
+    link: "/abacus-classes-trichy/"
+  },
   {
     title: "Calligraphy & Handwriting",
     description: "Transform your child's handwriting into beautiful calligraphy. We focus on proper grip, stroke consistency, and artistic lettering.",
     features: ["Improves Legibility", "Boosts Confidence", "Enhances Motor Skills", "Artistic Expression"],
     image: "/courses/calligraphy-handwriting-classes-trichy.webp",
-    link: "/courses"
+    link: "/handwriting-classes/"
   },
   {
     title: "School Tuitions (1st to 8th Std)",
     description: "Comprehensive coaching for school students from 1st to 8th standard across major boards. We ensure strong foundational knowledge and exam readiness.",
     features: ["Personalized Attention", "Regular Assessments", "Expert Faculty", "Concept Clearing"],
     image: "/courses/school-tuitions-grade-1-to-8-trichy.webp",
-    link: "/courses"
+    link: "/school-tuitions/"
   },
   {
     title: "Hindi Language Classes",
     description: "Master the national language with our structured Hindi courses. Perfect for beginners or school students needing academic support.",
     features: ["Reading & Writing", "Spoken Fluency", "Grammar Mastery", "School Syllabus Help"],
     image: "/courses/spoken-hindi-classes-trichy.webp",
-    link: "/courses"
+    link: "/hindi-classes/"
   },
   {
     title: "Phonics",
@@ -37,21 +43,21 @@ const programs = [
     image: "/courses/eplanet-phonics-classes-trichy.webp",
     class: "abacus-img",
     note: "Authorised Eplanet Franchise",
-    link: "/courses"
+    link: "/phonics-classes/"
   },
   {
     title: "Vedic Maths",
     description: "Ancient Indian mathematical techniques that empower students to solve complex calculations mentally with lightning speed and accuracy.",
     features: ["Mental Calculation", "Speed Math Tricks", "Competitive Exam Prep", "Eliminates Math Fear"],
     image: "/courses/vedic-maths-classes-trichy.webp",
-    link: "/courses"
+    link: "/vedic-maths/"
   },
   {
     title: "Chess (Summer Class)",
     description: "Engaging summer program to learn chess strategies. Boosts critical thinking, problem-solving skills, and concentration in a fun environment.",
     features: ["Strategic Thinking", "Problem Solving", "Focus & Patience", "Summer Special"],
     image: "/courses/summer-chess-classes-trichy.webp",
-    link: "/courses"
+    link: "/chess-classes/"
   }
 ];
 ---
@@ -123,10 +129,11 @@ phonics, Hindi classes and school tuition programs for children aged 5–14.
       ))}
     </div>
     
-    <!-- Central Floating Action Button -->
-    <div class="full-curriculum-action reveal delay-500">
-      <a href="/courses" class="btn btn-primary btn-pill shadow-glow">View Full Curriculum</a>
-    </div>
+    {showButton && (
+      <div class="full-curriculum-action reveal delay-500">
+        <a href={buttonLink} class="btn btn-primary btn-pill shadow-glow">{buttonText}</a>
+      </div>
+    )}
   </div>
 </section>
 

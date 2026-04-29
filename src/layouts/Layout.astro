@@ -25,7 +25,7 @@ const resolvedOgTitle       = ogTitle       ?? title;
 const resolvedOgDescription = ogDescription ?? description;
 
 // canonical URL now tracks the ACTUAL page path, not hardcoded homepage
-const canonicalURL = new URL(Astro.url.pathname, "https://kayalacademy.com");
+const canonicalURL = new URL(Astro.url.pathname, "https://www.kayalacademy.com");
 // FIX 5: og:url also uses the real page URL
 const ogURL = canonicalURL.toString();
 ---
@@ -62,7 +62,7 @@ const ogURL = canonicalURL.toString();
     <link rel="canonical" href={canonicalURL} />
     <link rel="preload" as="image" href="/achievements/logo.webp">
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml">
-    <link rel="alternate" href="https://kayalacademy.com" hreflang="en-IN">
+    <link rel="alternate" href="https://www.kayalacademy.com" hreflang="en-IN">
 
     <ViewTransitions />
 
@@ -94,14 +94,14 @@ const ogURL = canonicalURL.toString();
          ============================================================ -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": ["EducationalOrganization", "LocalBusiness"],
+      "@type": ["EducationalOrganization", "School", "LocalBusiness"],
       "@id": "https://kayalacademy.com/#business",
       "name": "Kayal Academy",
       "url": "https://kayalacademy.com",
       "logo": "https://kayalacademy.com/achievements/logo.webp",
       "image": "https://kayalacademy.com/achievements/abacus-training-trichy-hero.webp",
       "description": "Kayal Academy is a leading Abacus training center in Trichy offering mental math programs, handwriting improvement, phonics training, Hindi classes and tuition support for school students.",
-      "telephone": "+91-9159496503",
+      "telephone": "+919159496503",
       "priceRange": "₹₹",
       "address": {
         "@type": "PostalAddress",
@@ -116,10 +116,41 @@ const ogURL = canonicalURL.toString();
         "latitude": "10.8247",
         "longitude": "78.6966"
       },
-      "areaServed": {
-        "@type": "City",
-        "name": "Tiruchirappalli"
-      },
+      "areaServed": [
+  { "@type": "City", "name": "Tiruchirappalli" },
+  { "@type": "Place", "name": "Teppakulam" },
+  { "@type": "Place", "name": "Srirangam" },
+  { "@type": "Place", "name": "Woraiyur" },
+  { "@type": "Place", "name": "Thillai Nagar" },
+  { "@type": "Place", "name": "Cantonment" },
+  { "@type": "Place", "name": "K K Nagar" },
+  { "@type": "Place", "name": "Karumandapam" },
+  { "@type": "Place", "name": "Palakkarai" },
+  { "@type": "Place", "name": "Golden Rock" }
+],
+"makesOffer": [
+  {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Service",
+      "name": "Abacus Classes in Trichy"
+    }
+  },
+  {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Service",
+      "name": "Vedic Maths Classes"
+    }
+  },
+  {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Service",
+      "name": "Phonics Classes for Kids"
+    }
+  }
+],
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
@@ -214,15 +245,15 @@ const ogURL = canonicalURL.toString();
         <!-- Desktop Nav -->
         <nav class="nav-links">
           <a href="/">Home</a>
-          <a href="/about" aria-label="About Kayal Academy">About</a>
-          <a href="/courses" aria-label="Courses offered by Kayal Academy">Courses</a>
-          <a href="/feedback" aria-label="Feedback from students of Kayal Academy">Feedback</a>
-          <a href="/achievements" aria-label="Achievements of Kayal Academy">Achievements</a>
-          <a href="/faq" aria-label="FAQ about Kayal Academy">FAQ</a>
+          <a href="/about/" aria-label="About Kayal Academy">About</a>
+          <a href="/courses/" aria-label="Courses offered by Kayal Academy">Courses</a>
+          <a href="/feedback/" aria-label="Feedback from students of Kayal Academy">Feedback</a>
+          <a href="/achievements/" aria-label="Achievements of Kayal Academy">Achievements</a>
+          <a href="/faq/" aria-label="FAQ about Kayal Academy">FAQ</a>
         </nav>
 
         <div class="nav-actions">
-          <a href="/contact" class="btn btn-primary btn-sm btn-glow desktop-only">Get in Touch</a>
+          <a href="/contact/" class="btn btn-primary btn-sm btn-glow desktop-only">Get in Touch</a>
           <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Menu">
             <span></span>
             <span></span>
@@ -236,12 +267,12 @@ const ogURL = canonicalURL.toString();
     <div id="mobile-menu" class="mobile-menu">
       <div class="mobile-menu-content">
         <a href="/">Home</a>
-        <a href="/about" aria-label="About Kayal Academy">About</a>
-        <a href="/courses" aria-label="Courses offered by Kayal Academy">Courses</a>
-        <a href="/feedback" aria-label="Feedback from students of Kayal Academy">Feedback</a>
-        <a href="/achievements" aria-label="Achievements of Kayal Academy">Achievements</a>
-        <a href="/faq" aria-label="FAQ about Kayal Academy">FAQ</a>
-        <a href="/contact" class="btn btn-primary mt-4" aria-label="Contact Kayal Academy">Get in Touch</a>
+        <a href="/about/" aria-label="About Kayal Academy">About</a>
+        <a href="/courses/" aria-label="Courses offered by Kayal Academy">Courses</a>
+        <a href="/feedback/" aria-label="Feedback from students of Kayal Academy">Feedback</a>
+        <a href="/achievements/" aria-label="Achievements of Kayal Academy">Achievements</a>
+        <a href="/faq/" aria-label="FAQ about Kayal Academy">FAQ</a>
+        <a href="/contact/" class="btn btn-primary mt-4" aria-label="Contact Kayal Academy">Get in Touch</a>
       </div>
     </div>
 
@@ -293,19 +324,19 @@ const ogURL = canonicalURL.toString();
 
           <div class="footer-links">
             <h4>Academy</h4>
-            <a href="/about">About Us</a>
-            <a href="/feedback">Parent Feedback</a>
-            <a href="/achievements">Achievements</a>
-            <a href="/faq">FAQ</a>
+            <a href="/about/">About Us</a>
+            <a href="/feedback/">Parent Feedback</a>
+            <a href="/achievements/">Achievements</a>
+            <a href="/faq/">FAQ</a>
           </div>
 
           <div class="footer-links">
             <h4>Programs</h4>
-            <a href="/courses">Abacus Classes Trichy</a>
-            <a href="/courses">Handwriting Courses</a>
-            <a href="/courses">Tuition Centre Teppakulam</a>
-            <a href="/courses">Spoken Hindi</a>
-            <a href="/courses">Phonics</a>
+            <a href="/abacus-classes-trichy/">Best Abacus Classes in Trichy</a>
+            <a href="/handwriting-classes/">Handwriting Courses</a>
+            <a href="/school-tuitions/">Tuition Centre Teppakulam</a>
+            <a href="/hindi-classes/">Spoken Hindi</a>
+            <a href="/phonics-classes/">Phonics</a>
           </div>
 
           <div class="footer-contact">
@@ -337,7 +368,7 @@ const ogURL = canonicalURL.toString();
 
         <div class="footer-bottom">
           <p class="text-white">&copy; {new Date().getFullYear()} Kayal Academy. All rights reserved.</p>
-          <span class="text-sm text-white opacity-75 author-attribution">Designed By VaC Solutions</span>
+          <span class="text-sm text-white opacity-75 author-attribution">Designed & Developed by <a href="https://vacglobalsolutions.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent underline">VaC Global Solutions</a></span>
         </div>
       </div>
     </footer>

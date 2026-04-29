@@ -1,0 +1,183 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Certifications from '../components/Certifications.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Contact from '../components/Contact.astro';
+
+const topics = [
+  { 
+    title: "Strategic Thinking", 
+    desc: "Learning to plan moves ahead and anticipate opponent's strategies.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8"/><path d="m16 4-4 4-4-4"/><path d="M4 11a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3z"/><path d="M15 22H9"/></svg>`
+  },
+  { 
+    title: "Focus & Patience", 
+    desc: "Enhances concentration and emotional control during intense gameplay.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`
+  },
+  { 
+    title: "Problem Solving", 
+    desc: "Training the brain to find creative solutions under time pressure.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`
+  },
+  { 
+    title: "Summer Special", 
+    desc: "An engaging and fun-filled camp designed for students during school breaks.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`
+  }
+];
+---
+
+<Layout 
+  title="Summer Chess Classes in Trichy | Best Chess Coaching Teppakulam"
+  description="Learn chess strategies and boost critical thinking with Kayal Academy's summer chess classes in Trichy. Expert coaching for beginners and intermediate players."
+>
+  <PageHeader 
+    title="Summer Chess Camp in Trichy"
+    description="Sharpen your mind and master the game of kings. Our summer chess program focuses on building strategic thinking, focus, and patience in a fun environment."
+  />
+
+  <section class="section chess-detail">
+    <div class="container">
+      <div class="grid-2 gap-12 items-center">
+        <div class="reveal reveal-left order-2 md:order-1">
+          <span class="badge mb-4">Strategic Mastery</span>
+          <h2 class="h2 mb-6">Learn Chess from <span class="text-accent">the Experts</span></h2>
+          <div class="prose text-muted">
+            <p>Chess is more than just a game; it's a tool for mental development. Our summer coaching program is designed to introduce children to the foundations of chess while challenging more experienced players.</p>
+            <p>We focus on everything from basic piece movements to advanced opening strategies, middle-game tactics, and endgame mastery, ensuring every student improves their Elo rating and confidence.</p>
+          </div>
+          
+          <ul class="feature-list mt-8">
+            <li class="flex items-center gap-3 mb-4 font-bold text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Step-by-step Opening & Endgame Strategies
+            </li>
+            <li class="flex items-center gap-3 mb-4 font-bold text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Regular Practice Matches & Tournaments
+            </li>
+            <li class="flex items-center gap-3 mb-4 font-bold text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Certificates of Completion for All Students
+            </li>
+          </ul>
+        </div>
+        
+        <div class="reveal reveal-right relative order-1 md:order-2">
+          <div class="image-wrapper">
+            <img src="/courses/summer-chess-classes-trichy.webp" alt="Chess Classes at Kayal Academy" class="rounded-2xl shadow-2xl" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-dark overflow-hidden">
+    <div class="container relative z-10">
+      <div class="text-center mb-16 reveal">
+        <h2 class="h2 font-heading text-white">What You'll <span class="text-primary-light">Master</span></h2>
+        <p class="text-white opacity-80 mt-4 max-w-2xl mx-auto">A comprehensive coaching program designed to turn beginners into strategic thinkers.</p>
+      </div>
+
+      <div class="topics-grid">
+        {topics.map((topic, i) => (
+          <div class="topic-card glass-dark reveal delay-${i * 100}">
+            <div class="topic-icon" set:html={topic.icon}></div>
+            <h4 class="h4 font-heading text-white mb-3">{topic.title}</h4>
+            <p class="text-sm text-white opacity-80">{topic.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="bg-decoration"></div>
+  </section>
+
+  <Certifications />
+  <Testimonials />
+  <Contact />
+</Layout>
+
+<style>
+  .chess-detail {
+    padding-top: 4rem;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .items-center { align-items: center; }
+
+  .bg-dark {
+    background: #064e3b;
+    padding: 6rem 0;
+    position: relative;
+    color: white;
+  }
+
+  .bg-dark h2, .bg-dark h4 {
+    color: white !important;
+  }
+
+  .bg-dark p {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  .topic-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2.25rem 2rem;
+    border-radius: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .topic-card:hover {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: var(--color-primary-light);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.2);
+  }
+
+  .topic-icon {
+    margin-bottom: 2rem;
+    color: var(--color-primary-light);
+  }
+
+  .topic-card p {
+    line-height: 1.8;
+  }
+
+  .bg-decoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  @media (max-width: 1024px) {
+    .topics-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
+    .topics-grid { grid-template-columns: 1fr; }
+  }
+</style>

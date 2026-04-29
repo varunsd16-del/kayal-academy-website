@@ -1,0 +1,209 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Certifications from '../components/Certifications.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Contact from '../components/Contact.astro';
+
+const benefits = [
+  { 
+    title: "10X Speed", 
+    desc: "Solve complex calculations mentally with lightning fast speed and precision.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`
+  },
+  { 
+    title: "Mental Agility", 
+    desc: "Enhances logical thinking and sharpens the brain for better decision making.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1 0-4.88 2.5 2.5 0 0 1 0-4.88A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 0-4.88 2.5 2.5 0 0 0 0-4.88A2.5 2.5 0 0 0 14.5 2Z"/></svg>`
+  },
+  { 
+    title: "Exam Edge", 
+    desc: "Highly beneficial for competitive exams like Olympiads, NTSE, and beyond.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>`
+  },
+  { 
+    title: "Fear Removal", 
+    desc: "Eliminates math phobia by making calculations fun, easy, and intuitive.",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`
+  }
+];
+---
+
+<Layout 
+  title="Vedic Maths Classes in Trichy | Mental Math Training Teppakulam"
+  description="Master ancient Indian speed math techniques with Kayal Academy's Vedic Maths classes in Trichy. Boost calculation speed by 10x. Perfect for students and exam prep."
+>
+  <PageHeader 
+    title="Vedic Maths: Ancient Speed Techniques"
+    description="Empower your child with the world's fastest mental calculation system. Vedic Maths makes even the most daunting calculations simple, fast, and enjoyable."
+  />
+
+  <section class="section vedic-detail">
+    <div class="container">
+      <div class="grid-2 gap-12 items-center">
+        <div class="reveal reveal-left order-2 md:order-1">
+          <span class="badge mb-4">Mental Arithmetic</span>
+          <h2 class="h2 mb-6">The Power of <span class="text-accent">Vedic Maths</span></h2>
+          <div class="prose text-muted">
+            <p>Vedic Mathematics is an ancient Indian system of mental calculation that is both logical and intuitive. It consists of 16 sutras (formulas) that can be applied to solve complex problems in seconds.</p>
+            <p>At Kayal Academy, we teach students how to apply these techniques to their regular school curriculum, helping them achieve higher scores in Math while significantly reducing time spent on rough work.</p>
+          </div>
+          
+          <div class="stats-row mt-10">
+            <div class="stat-item">
+              <span class="stat-num">16</span>
+              <span class="stat-label">Sutras</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">10X</span>
+              <span class="stat-label">Speed</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">Easy</span>
+              <span class="stat-label">Logic</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="reveal reveal-right relative order-1 md:order-2">
+          <div class="image-wrapper">
+            <img src="/courses/vedic-maths-classes-trichy.webp" alt="Vedic Maths at Kayal Academy" class="rounded-2xl shadow-2xl" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-dark overflow-hidden">
+    <div class="container relative z-10">
+      <div class="text-center mb-16 reveal">
+        <h2 class="h2 font-heading text-white">Why Learn <span class="text-primary-light">Vedic Maths?</span></h2>
+        <p class="text-white opacity-80 mt-4 max-w-2xl mx-auto">Transform the way your child looks at numbers with ancient wisdom and modern speed.</p>
+      </div>
+
+      <div class="benefits-grid">
+        {benefits.map((benefit, i) => (
+          <div class="benefit-card glass-dark reveal delay-${i * 100}">
+            <div class="benefit-icon" set:html={benefit.icon}></div>
+            <h4 class="h4 font-heading text-white mb-3">{benefit.title}</h4>
+            <p class="text-sm text-white opacity-80">{benefit.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="bg-decoration"></div>
+  </section>
+
+  <Certifications />
+  <Testimonials />
+  <Contact />
+</Layout>
+
+<style>
+  .vedic-detail {
+    padding-top: 4rem;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .items-center { align-items: center; }
+
+  .stats-row {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-num {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  .bg-dark {
+    background: #064e3b;
+    padding: 6rem 0;
+    position: relative;
+    color: white;
+  }
+
+  .bg-dark h2, .bg-dark h4 {
+    color: white !important;
+  }
+
+  .bg-dark p {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  .benefit-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2.25rem 2rem;
+    border-radius: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .benefit-card:hover {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: var(--color-primary-light);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.2);
+  }
+
+  .benefit-icon {
+    margin-bottom: 2rem;
+    color: var(--color-primary-light);
+  }
+
+  .benefit-card p {
+    line-height: 1.8;
+  }
+
+  .bg-decoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  @media (max-width: 1024px) {
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .stats-row { justify-content: center; }
+  }
+</style>

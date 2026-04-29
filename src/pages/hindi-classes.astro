@@ -1,0 +1,194 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Certifications from '../components/Certifications.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<Layout 
+  title="Hindi Classes in Trichy | DBHPS Exam Coaching Teppakulam"
+  description="Master Hindi with Kayal Academy's expert coaching in Trichy. We offer structured classes for all 8 DBHPS levels (Prathamik to Nishnat). Certified trainers and flexible batches."
+>
+  <PageHeader 
+    title="DBHPS Hindi Classes in Trichy"
+    description="Guided by certified experts, our Hindi program helps students achieve excellence in Dakshina Bharat Hindi Prachar Sabha examinations with 100% success rate."
+  />
+
+  <section class="section hindi-detail-section">
+    <div class="container">
+      <div class="grid-2 gap-12 items-center">
+        <div class="reveal reveal-left">
+          <span class="badge mb-4">Language Mastery</span>
+          <h2 class="h2 mb-6">Why Choose Kayal Academy for <span class="text-accent">Hindi Classes?</span></h2>
+          <div class="prose text-muted">
+            <p>Mastering Hindi is a vital skill for academic success and career growth in India. At Kayal Academy, we provide specialized coaching for students and adults looking to learn the national language.</p>
+            <p>As a recognized coaching center in Trichy, we focus on the official curriculum of the <strong>Dakshina Bharat Hindi Prachar Sabha (DBHPS)</strong>, ensuring our students are well-prepared for all national-level examinations.</p>
+          </div>
+          <ul class="feature-list mt-8">
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Coaching for all 8 levels (Parichaya to Nishnat)</span>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Focus on Speaking, Reading, and Writing</span>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Flexible weekend and evening batches</span>
+            </li>
+          </ul>
+        </div>
+        <div class="reveal reveal-right relative">
+          <div class="image-stack">
+            <img src="/courses/spoken-hindi-classes-trichy.webp" alt="Hindi Classes at Kayal Academy Trichy" class="main-img rounded-xl shadow-2xl" />
+            <div class="accent-box"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-muted-light">
+    <div class="container">
+      <div class="text-center mb-12 reveal">
+        <h2 class="h2 font-heading text-primary">Official DBHPS <span class="text-gradient">Exam Path</span></h2>
+        <p class="text-muted mt-4 max-w-2xl mx-auto">We guide students through the systematic progression of Hindi proficiency exams recognized across India.</p>
+      </div>
+
+      <div class="hindi-levels-grid reveal delay-100">
+        {[
+          { name: "Parichaya", desc: "Introduction to Hindi alphabet and basic words." },
+          { name: "Prathamik", desc: "Basic sentences and elementary grammar." },
+          { name: "Madhyama", desc: "Intermediate comprehension and storytelling." },
+          { name: "Rashtrabhasha", desc: "Advanced grammar and poetry analysis." },
+          { name: "Praveshika", desc: "Higher secondary level proficiency." },
+          { name: "Visharad", desc: "Deep dive into Hindi literature and history." },
+          { name: "Praveen", desc: "Advanced literary works and translation skills." },
+          { name: "Nishnat", desc: "Highest level of mastery and research-oriented study." }
+        ].map((exam, i) => (
+          <div class="level-card glass">
+            <div class="level-num">{i + 1}</div>
+            <h4 class="font-heading text-primary text-lg mb-2">{exam.name}</h4>
+            <p class="text-sm text-muted">{exam.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Certifications />
+  
+  <div class="testimonial-wrapper">
+    <Testimonials />
+  </div>
+
+  <Contact />
+
+</Layout>
+
+<style>
+  .hindi-detail-section {
+    padding-top: 4rem;
+  }
+  
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .items-center { align-items: center; }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .main-img {
+    width: 100%;
+    height: auto;
+    z-index: 2;
+    position: relative;
+  }
+
+  .accent-box {
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--color-primary-light);
+    border-radius: 1.5rem;
+    z-index: 1;
+    opacity: 0.2;
+  }
+
+  .bg-muted-light {
+    background-color: rgba(243, 244, 246, 0.5);
+  }
+
+  .hindi-levels-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .level-card {
+    padding: 2rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(15, 118, 110, 0.1);
+    background: white;
+    transition: transform 0.3s ease;
+  }
+
+  .level-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+  }
+
+  .level-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    font-weight: 800;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .testimonial-wrapper {
+    background-color: var(--color-bg);
+    padding-top: 2rem;
+  }
+
+  @media (max-width: 1024px) {
+    .hindi-levels-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
+    .hindi-levels-grid { grid-template-columns: 1fr; }
+    .accent-box { display: none; }
+  }
+</style>
